@@ -20,9 +20,7 @@ class AppTheme {
         ),
         sliderTheme: const SliderThemeData(
           trackHeight: 4,
-          // Ajusta el radio del pulgar del Slider
           thumbShape: RoundSliderThumbShape(enabledThumbRadius: 7),
-          // Ajusta el radio del overlay del Slider
           overlayShape: RoundSliderOverlayShape(overlayRadius: 5),
         ),
         iconButtonTheme: const IconButtonThemeData(
@@ -43,9 +41,7 @@ class AppTheme {
         ),
         sliderTheme: const SliderThemeData(
           trackHeight: 4,
-          // Ajusta el radio del pulgar del Slider
           thumbShape: RoundSliderThumbShape(enabledThumbRadius: 7),
-          // Ajusta el radio del overlay del Slider
           overlayShape: RoundSliderOverlayShape(overlayRadius: 5),
         ),
         iconButtonTheme: const IconButtonThemeData(
