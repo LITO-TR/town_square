@@ -1,15 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Enum para los tipos de dispositivos
 enum DeviceType { mobile, desktop }
 
-final deviceTypeProvider = Provider<DeviceType>((ref) {
-  final screenWidth = WidgetsBinding.instance.window.physicalSize.width;
+class DeviceTypeNotifier extends StateNotifier<DeviceType> {
+  DeviceTypeNotifier() : super(DeviceType.mobile);
 
-  if (screenWidth < 800) {
-    return DeviceType.mobile;
-  } else {
-    return DeviceType.desktop;
+  void updateDeviceType(double width) {
+    if (width < 1268) {
+      state = DeviceType.mobile;
+    } else {
+      state = DeviceType.desktop;
+    }
   }
+}
+
+final deviceTypeProvider =
+    StateNotifierProvider<DeviceTypeNotifier, DeviceType>((ref) {
+  return DeviceTypeNotifier();
 });

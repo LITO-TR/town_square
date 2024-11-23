@@ -6,50 +6,34 @@ class AppTheme {
 
   AppTheme({required this.textTheme});
   ThemeData getLightTheme() => ThemeData(
+        useMaterial3: false,
         brightness: Brightness.light,
         fontFamily: 'SFProDisplay',
-        scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-        unselectedWidgetColor: CustomColors.primary,
-        colorScheme: const ColorScheme.light(
-          primary: CustomColors.primary,
+        scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColorLigthMode,
+        textTheme: textTheme.copyWith(
+          displayLarge: textTheme.displayLarge!.copyWith(color: Colors.black),
+          displayMedium: textTheme.displayMedium!.copyWith(color: Colors.black),
+          titleLarge: textTheme.titleLarge!.copyWith(color: Colors.black),
+          titleMedium: textTheme.titleMedium!.copyWith(color: Colors.black),
+          bodyLarge: textTheme.bodyLarge!.copyWith(color: Colors.black),
+          bodyMedium: textTheme.bodyMedium!.copyWith(color: Colors.black),
+          bodySmall: textTheme.bodySmall!.copyWith(color: Colors.black),
         ),
-        appBarTheme: const AppBarTheme(
-          color: CustomColors.primary,
-          iconTheme: IconThemeData(color: Colors.white),
-          elevation: 0.0,
-        ),
-        sliderTheme: const SliderThemeData(
-          trackHeight: 4,
-          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 7),
-          overlayShape: RoundSliderOverlayShape(overlayRadius: 5),
-        ),
-        iconButtonTheme: const IconButtonThemeData(
-          style: ButtonStyle(
-            iconColor: WidgetStatePropertyAll(Colors.black),
-            backgroundColor: WidgetStatePropertyAll(Colors.transparent),
-          ),
-        ),
-        textTheme: textTheme,
       );
+
   ThemeData getDarkTheme() => ThemeData(
+        useMaterial3: false,
         brightness: Brightness.dark,
-        fontFamily: 'Ubuntu',
+        fontFamily: 'SFProDisplay',
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColorDarkMode,
-        unselectedWidgetColor: CustomColors.primary,
-        colorScheme: const ColorScheme.dark(
-          primary: CustomColors.primary,
+        textTheme: textTheme.copyWith(
+          displayLarge: textTheme.displayLarge!.copyWith(color: Colors.white),
+          displayMedium: textTheme.displayMedium!.copyWith(color: Colors.white),
+          titleLarge: textTheme.titleLarge!.copyWith(color: Colors.white),
+          titleMedium: textTheme.titleMedium!.copyWith(color: Colors.white),
+          bodyLarge: textTheme.bodyLarge!.copyWith(color: Colors.white),
+          bodyMedium: textTheme.bodyMedium!.copyWith(color: Colors.white),
+          bodySmall: textTheme.bodySmall!.copyWith(color: Colors.white),
         ),
-        sliderTheme: const SliderThemeData(
-          trackHeight: 4,
-          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 7),
-          overlayShape: RoundSliderOverlayShape(overlayRadius: 5),
-        ),
-        iconButtonTheme: const IconButtonThemeData(
-          style: ButtonStyle(
-            iconColor: WidgetStatePropertyAll(Colors.white),
-            backgroundColor: WidgetStatePropertyAll(Colors.transparent),
-          ),
-        ),
-        textTheme: textTheme,
       );
 }

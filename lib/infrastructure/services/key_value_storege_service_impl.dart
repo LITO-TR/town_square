@@ -1,13 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:town_square/infrastructure/key_value_storage_service.dart';
+import 'package:town_square/infrastructure/services/key_value_storage_service.dart';
 
 class KeyValueStorageServiceImpl extends KeyValueStorageService {
-  // Obtiene la instancia de SharedPreferences
   Future<SharedPreferences> getSharedPrefs() async {
     return await SharedPreferences.getInstance();
   }
 
-  // Obtiene el valor de SharedPreferences basado en el tipo T
   @override
   Future<T?> getValue<T>(String key) async {
     try {
@@ -28,7 +26,6 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService {
     }
   }
 
-  // Obtiene todas las claves almacenadas en SharedPreferences
   @override
   Future<Set<String>> getAllKeys() async {
     try {
@@ -39,7 +36,6 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService {
     }
   }
 
-  // Elimina una clave específica de SharedPreferences
   @override
   Future<bool> removeKey(String key) async {
     try {
@@ -50,7 +46,6 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService {
     }
   }
 
-  // Guarda un valor en SharedPreferences basado en el tipo T
   @override
   Future<void> setKeyValue<T>(String key, T value) async {
     try {

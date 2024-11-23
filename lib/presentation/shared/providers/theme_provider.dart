@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:town_square/infrastructure/key_value_storage_service.dart';
+import 'package:town_square/infrastructure/services/key_value_storage_service.dart';
 
 import 'package:town_square/presentation/shared/providers/key_value_storage_provider.dart';
 
@@ -19,10 +19,8 @@ class ThemeNotifier extends StateNotifier<bool> {
   }
 
   void _init() async {
-    // Verificamos si hay un tema guardado en el almacenamiento
     bool? isDark = await keyValueStorageService.getValue<bool>("isDarkMode");
 
-    // Si hay un tema guardado, lo aplicamos, si no, usamos el tema del sistema operativo.
     if (isDark == null) {
       var brightness =
           SchedulerBinding.instance.platformDispatcher.platformBrightness;

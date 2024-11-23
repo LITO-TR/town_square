@@ -55,5 +55,13 @@ class CustomColors {
   static const Color workSpaceTag = Color(0xFF989AEA);
   static const Color childCareTag = Color(0xFFD8F7DF);
 
+  static const Color lightIntensityTitle = Color(0xFF65B5DB);
+  static const Color mediumIntensityTitle = Color(0xFFC9A4F2);
+  static const Color highIntensityTitle = Color(0xFFDC974F);
+  static const Color veryHighIntensityTitle = Color(0xFFFFE0E4);
+  static const Color workSpaceTagTitle = Color(0xFFFFFFFF);
+  static const Color childCareTagTitle = Color(0xFF8AB58A);
+
   static const Color scaffoldBackgroundColorDarkMode = Color(0xFF0E0E0E);
+  static const Color scaffoldBackgroundColorLigthMode = Color(0xFFF8F9FA);
 }
