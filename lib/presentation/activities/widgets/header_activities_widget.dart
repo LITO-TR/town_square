@@ -12,8 +12,10 @@ class HeaderActivitiesWidget extends ConsumerWidget {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.sizeOf(context);
     final deviceType = ref.watch(deviceTypeProvider);
+    final themePv = ref.watch(themeProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -22,34 +24,42 @@ class HeaderActivitiesWidget extends ConsumerWidget {
             Text(
               'Tues, Nov 12',
               style: textTheme.bodyMedium?.copyWith(
-                  color: CustomColors.neutral, fontWeight: FontWeight.w500),
+                color: CustomColors.neutral[500],
+                fontWeight: FontWeight.w500,
+              ),
             ),
             if (deviceType == DeviceType.mobile)
               Row(
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        ref.read(themeProvider.notifier).toggleTheme();
-                      },
-                      icon: const Icon(Icons.notifications_none_rounded)),
+                  InkWell(
+                    onTap: () {
+                      ref.read(themeProvider.notifier).toggleTheme();
+                    },
+                    child: Image.asset(
+                      color: themePv ? Colors.white : Colors.black,
+                      'assets/images/icons/bell.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   const CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/profile.png'),
+                    radius: 14,
                     backgroundColor: Colors.yellow,
                   ),
                 ],
               )
           ],
         ),
-        Column(
-          children: [
-            Text(
-              'This week in Estepona',
-              style: textTheme.displayMedium
-                  ?.copyWith(fontWeight: FontWeight.w500),
-            ),
-          ],
-        ),
+        Text('This week in Estepona',
+            style: textTheme.displaySmall?.copyWith(
+              fontWeight: FontWeight.w500,
+            )),
         SizedBox(
-          height: size.height * 0.03,
+          height: size.height * 0.018,
         )
       ],
     );

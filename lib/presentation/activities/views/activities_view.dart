@@ -22,44 +22,57 @@ class ActivitiesView extends ConsumerWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0),
-        child: SafeArea(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 15),
-                    const HeaderActivitiesWidget(),
-                    if (deviceType == DeviceType.mobile) ...[
-                      const CustomCardGoalWidget(),
-                      SizedBox(height: size.height * 0.03),
-                    ],
-                    const CustomTextFormFieldWidget(
+        padding: const EdgeInsets.symmetric(horizontal: 0.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: size.height * 0.05),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 18.0),
+                    child: HeaderActivitiesWidget(),
+                  ),
+                  if (deviceType == DeviceType.mobile) ...[
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 18.0),
+                      child: CustomCardGoalWidget(),
+                    ),
+                    SizedBox(height: size.height * 0.03),
+                  ],
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 18.0),
+                    child: CustomTextFormFieldWidget(
                       hint: 'What do you feel like doing?',
                       suffixIcon: Icon(
-                        size: 30,
+                        size: 24,
                         Icons.search_outlined,
                         color: CustomColors.neutral,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.02),
-                    const CategoryListWidget(),
-                    SizedBox(height: size.height * 0.03),
-                    const ActivitiesListWidget(),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: size.height * 0.02),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 18.0),
+                    child: CategoryListWidget(),
+                  ),
+                  SizedBox(height: size.height * 0.03),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 18.0),
+                    child: ActivitiesListWidget(),
+                  ),
+                ],
               ),
-              if (deviceType == DeviceType.desktop)
-                Expanded(
-                  flex: 1,
-                  child: _buildDesktopSideColumn(size),
-                ),
-            ],
-          ),
+            ),
+            if (deviceType == DeviceType.desktop)
+              Expanded(
+                flex: 1,
+                child: _buildDesktopSideColumn(size),
+              ),
+          ],
         ),
       ),
     );

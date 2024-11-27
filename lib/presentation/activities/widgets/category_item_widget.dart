@@ -19,7 +19,7 @@ class CategoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final boxDecoration = BoxDecoration(
       color: isSelected
-          ? CustomColors.secondaryB[400]
+          ? CustomColors.secondaryB[300]
           : CustomColors.secondaryB[200],
       borderRadius: BorderRadius.circular(4),
     );

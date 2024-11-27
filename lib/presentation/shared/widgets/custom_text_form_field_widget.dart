@@ -105,9 +105,9 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: const EdgeInsets.fromLTRB(
               20.0,
-              10.0,
+              8.0,
               20.0,
-              10.0,
+              8.0,
             ),
           ),
         ),

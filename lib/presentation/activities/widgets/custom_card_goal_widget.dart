@@ -25,50 +25,53 @@ class CustomCardGoalWidget extends StatelessWidget {
       ),
       child: Padding(
         padding:
-            const EdgeInsets.only(right: 0.0, left: 16.0, top: 14, bottom: 14),
+            const EdgeInsets.only(right: 16.0, left: 16.0, top: 10, bottom: 4),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              width: size.width * 0.6,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'You’re close to your goal!',
-                    style: textTheme.titleLarge?.copyWith(color: Colors.black),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.01,
-                  ),
-                  Text(
-                    'Join more sport activities to collect more points',
-                    style: textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w400, color: Colors.black),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  Row(
-                    children: [
-                      CustomButtonWidget(
-                        title: 'Join now',
-                        onPressed: () {},
+            Expanded(
+              child: SizedBox(
+                width: size.width * 0.6,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'You’re close to your goal!',
+                      style: textTheme.bodyLarge?.copyWith(
+                          color: Colors.black, fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.003,
+                    ),
+                    SizedBox(
+                      child: Text(
+                        'Join more sport activities to collect more points',
+                        style: textTheme.bodySmall?.copyWith(
+                            fontWeight: FontWeight.w400, color: Colors.black),
                       ),
-                      SizedBox(
-                        width: size.width * 0.04,
-                      ),
-                      CustomButtonWidget(
-                        title: 'My points',
-                        onPressed: () {},
-                      ),
-                    ],
-                  )
-                ],
+                    ),
+                    Row(
+                      children: [
+                        CustomButtonWidget(
+                          title: 'Join now',
+                          onPressed: () {},
+                        ),
+                        SizedBox(
+                          width: size.width * 0.04,
+                        ),
+                        CustomButtonWidget(
+                          title: 'My points',
+                          onPressed: () {},
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              width: size.width * 0.06,
-            ),
+            // SizedBox(
+            //   width: size.width * 0.05,
+            // ),
             const Center(child: ProgressActivitiesWidget(value: 27))
           ],
         ),

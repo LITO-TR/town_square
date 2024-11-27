@@ -40,13 +40,16 @@ class CustomButtonJoinWidgetState extends State<CustomButtonJoinWidget> {
               borderRadius: BorderRadius.circular(6),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            minimumSize: const Size(0, 20),
           ),
           onPressed: () {
             debugPrint("Unirse a la actividad");
           },
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-            child: Text("Join"),
+            child: Text(
+              "Join",
+            ),
           ),
         ),
       ),

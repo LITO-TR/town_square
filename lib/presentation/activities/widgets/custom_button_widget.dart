@@ -47,7 +47,7 @@ class CustomButtonWidgetState extends State<CustomButtonWidget> {
             alignment: Alignment.center,
             child: Text(
               widget.title,
-              style: textTheme.bodyMedium?.copyWith(
+              style: textTheme.bodySmall?.copyWith(
                 color: _isHovered ? Colors.black : Colors.white,
               ),
             ),

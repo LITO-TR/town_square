@@ -17,7 +17,7 @@ class ActivityCardWidget extends ConsumerWidget {
     final themePv = ref.watch(themeProvider);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0),
+      padding: const EdgeInsets.only(bottom: 15.0),
       child: Container(
         decoration: BoxDecoration(
           color: themePv
@@ -51,37 +51,38 @@ class ActivityCardWidget extends ConsumerWidget {
                     children: [
                       Text(
                         activity.time,
-                        style: textTheme.bodyMedium,
+                        style: textTheme.bodySmall,
                       ),
                       Text(
                         " (${activity.duration})",
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: CustomColors.neutral,
+                        style: textTheme.bodySmall?.copyWith(
+                          color: const Color(0xFF9E9E9E),
                         ),
                       ),
                     ],
                   ),
                   Text(activity.title,
-                      style: textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w700)),
+                      style: textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w700, fontSize: 16)),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Icon(
+                        size: 12,
                         Icons.location_on_outlined,
                         color: CustomColors.neutral,
                       ),
                       Text(
                         activity.location,
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: CustomColors.neutral,
+                        style: textTheme.bodySmall?.copyWith(
+                          color: const Color(0xFF9E9E9E),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: size.height * 0.015,
+                    height: size.height * 0.01,
                   ),
                   Row(
                     children: [
@@ -114,9 +115,9 @@ class ActivityCardWidget extends ConsumerWidget {
                   Text(
                     activity.price == 0
                         ? "Free"
-                        : "${activity.price}€${activity.isHourly ? '/hour' : ''}",
-                    style: textTheme.bodyLarge
-                        ?.copyWith(fontWeight: FontWeight.w700),
+                        : "${activity.price.toInt()}€${activity.isHourly ? '/hour' : ''}",
+                    style: textTheme.bodyMedium
+                        ?.copyWith(fontWeight: FontWeight.w700, fontSize: 16),
                   ),
                   SizedBox(
                     height: size.height * 0.015,
@@ -124,17 +125,18 @@ class ActivityCardWidget extends ConsumerWidget {
                   if (activity.availableSpots == 0)
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColors.neutral,
-                        foregroundColor: Colors.white,
+                        backgroundColor: const Color(0xFFFDA4AF),
+                        foregroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6),
                         ),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 0, vertical: 0),
+                        minimumSize: const Size(0, 20),
                         disabledBackgroundColor: CustomColors.neutral,
                         disabledForegroundColor: Colors.white,
                       ),
-                      onPressed: null,
+                      onPressed: () {},
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),

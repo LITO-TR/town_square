@@ -2,38 +2,47 @@ import 'package:flutter/material.dart';
 
 class CustomColors {
   static const MaterialColor primary = MaterialColor(
-    0xFF4FC7FF,
+    0xFF0EA5E9,
     <int, Color>{
-      100: Color(0xFFD5F1FF),
-      200: Color(0xFFC1EBFF),
-      300: Color(0xFFA1E1FF),
-      400: Color(0xFF7FD6FF),
-      500: Color(0xFF4FC7FF),
-      600: Color(0xFF35BAF8),
+      100: Color(0xFFE0F2FE),
+      200: Color(0xFFBAE6FD),
+      300: Color(0xFF7DD3FC),
+      400: Color(0xFF38BDF8),
+      500: Color(0xFF0EA5E9),
+      600: Color(0xFF0284C7),
+      700: Color(0xFF0369A1),
+      800: Color(0xFF075985),
+      900: Color(0xFF0C4A6E),
     },
   );
 
   static const MaterialColor secondary = MaterialColor(
-    0xFFF6DB43,
+    0xFFEAB308,
     <int, Color>{
-      100: Color(0xFFFFF8EB),
-      200: Color(0xFFFBF2C0),
-      300: Color(0xFFFFF09C),
-      400: Color(0xFFFFE764),
-      500: Color(0xFFF6DB43),
-      600: Color(0xFFEBCF30),
+      100: Color(0xFFFEF9C3),
+      200: Color(0xFFFEF08A),
+      300: Color(0xFFFDE047),
+      400: Color(0xFFFACC15),
+      500: Color(0xFFEAB308),
+      600: Color(0xFFCA8A04),
+      700: Color(0xFFA16207),
+      800: Color(0xFF854D0E),
+      900: Color(0xFF713F12),
     },
   );
 
   static const MaterialColor secondaryB = MaterialColor(
     0xFFAC84C3,
     <int, Color>{
-      100: Color(0xFFFBF4FF),
-      200: Color(0xFFEEE1F5),
-      300: Color(0xFFE5D5EE),
-      400: Color(0xFFBAA1C8),
-      500: Color(0xFFAC84C3),
-      600: Color(0xFF7C5D8E),
+      100: Color(0xFFF3E8FF),
+      200: Color(0xFFE9D5FF),
+      300: Color(0xFFD8B4FE),
+      400: Color(0xFFC084FC),
+      500: Color(0xFFA855F7),
+      600: Color(0xFF9333EA),
+      700: Color(0xFF7E22CE),
+      800: Color(0xFF6B21A8),
+      900: Color(0xFF581C87),
     },
   );
   static const MaterialColor neutral = MaterialColor(
@@ -45,6 +54,9 @@ class CustomColors {
       400: Color(0xFFCED4DA),
       500: Color(0xFFADB5BD),
       600: Color(0xFF6C757D),
+      700: Color(0xFF495057),
+      800: Color(0xFF343A40),
+      900: Color(0xFF212529),
     },
   );
 

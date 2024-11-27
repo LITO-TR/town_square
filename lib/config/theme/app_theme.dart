@@ -6,7 +6,7 @@ class AppTheme {
 
   AppTheme({required this.textTheme});
   ThemeData getLightTheme() => ThemeData(
-        useMaterial3: false,
+        useMaterial3: true,
         brightness: Brightness.light,
         fontFamily: 'SFProDisplay',
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColorLigthMode,
@@ -22,7 +22,7 @@ class AppTheme {
       );
 
   ThemeData getDarkTheme() => ThemeData(
-        useMaterial3: false,
+        useMaterial3: true,
         brightness: Brightness.dark,
         fontFamily: 'SFProDisplay',
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColorDarkMode,

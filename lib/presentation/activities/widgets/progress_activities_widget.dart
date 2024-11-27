@@ -13,7 +13,7 @@ class ProgressActivitiesWidget extends ConsumerWidget {
     final size = MediaQuery.sizeOf(context);
     final deviceType = ref.watch(deviceTypeProvider);
     final widthHeight =
-        deviceType == DeviceType.mobile ? size.width * 0.17 : size.width * 0.04;
+        deviceType == DeviceType.mobile ? size.width * 0.15 : size.width * 0.04;
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -21,7 +21,7 @@ class ProgressActivitiesWidget extends ConsumerWidget {
           width: widthHeight,
           height: widthHeight,
           child: CircularProgressIndicator(
-            color: CustomColors.primary[600],
+            color: CustomColors.primary[400],
             value: 1 - (value / 100),
             strokeWidth: 5,
             backgroundColor: Colors.white,
