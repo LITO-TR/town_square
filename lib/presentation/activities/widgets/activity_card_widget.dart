@@ -101,7 +101,7 @@ class ActivityCardWidget extends ConsumerWidget {
                         ),
                       ),
                       ...activity.services.map((service) => Padding(
-                            padding: const EdgeInsets.only(left: 6.0),
+                            padding: const EdgeInsets.only(left: 5.0),
                             child: getServiceWidget(service, textTheme),
                           )),
                     ],
@@ -182,7 +182,9 @@ class ActivityCardWidget extends ConsumerWidget {
       child: Text(
         service,
         style: textTheme.bodySmall?.copyWith(
-            color: titleServiceColors[service], fontWeight: FontWeight.w700),
+            color: titleServiceColors[service],
+            fontWeight: FontWeight.w700,
+            fontSize: 10),
       ),
     );
   }

@@ -50,6 +50,9 @@ class CustomCardGoalWidget extends StatelessWidget {
                             fontWeight: FontWeight.w400, color: Colors.black),
                       ),
                     ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
                     Row(
                       children: [
                         CustomButtonWidget(
@@ -64,7 +67,10 @@ class CustomCardGoalWidget extends StatelessWidget {
                           onPressed: () {},
                         ),
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
                   ],
                 ),
               ),
