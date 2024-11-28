@@ -96,7 +96,8 @@ Widget _buildDesktopSideColumn(Size size) {
             child: const EventCardWidget(),
           ),
           SizedBox(height: size.height * 0.03),
-          const SecondEventCardWidget(),
+          SizedBox(
+              height: size.height * 0.37, child: const SecondEventCardWidget()),
         ],
       ),
     ),
