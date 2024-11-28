@@ -33,18 +33,18 @@ class ActivitiesView extends ConsumerWidget {
                 children: [
                   SizedBox(height: size.height * 0.05),
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: HeaderActivitiesWidget(),
                   ),
                   if (deviceType == DeviceType.mobile) ...[
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
                       child: CustomCardGoalWidget(),
                     ),
                     SizedBox(height: size.height * 0.03),
                   ],
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: CustomTextFormFieldWidget(
                       hint: 'What do you feel like doing?',
                       suffixIcon: Icon(
@@ -61,7 +61,7 @@ class ActivitiesView extends ConsumerWidget {
                   ),
                   SizedBox(height: size.height * 0.03),
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: ActivitiesListWidget(),
                   ),
                 ],

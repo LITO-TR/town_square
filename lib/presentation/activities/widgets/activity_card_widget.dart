@@ -91,12 +91,16 @@ class ActivityCardWidget extends ConsumerWidget {
                             horizontal: 4, vertical: 2),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(2),
-                          color: CustomColors.neutral[200],
+                          color: themePv
+                              ? const Color(0xFF6C757D)
+                              : CustomColors.neutral[200],
                         ),
                         child: Text(
                           "${activity.availableSpots} spots left",
                           style: textTheme.bodySmall?.copyWith(
-                              color: CustomColors.neutral,
+                              color: themePv
+                                  ? const Color(0xFFE9ECEF)
+                                  : CustomColors.neutral,
                               fontWeight: FontWeight.w600),
                         ),
                       ),

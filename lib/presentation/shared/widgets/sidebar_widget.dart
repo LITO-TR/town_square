@@ -17,36 +17,52 @@ class SidebarWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.sizeOf(context);
-    const colorOptions = Colors.white;
 
     return Padding(
       padding: const EdgeInsets.only(right: 30.0),
       child: Container(
-        width: 270,
+        width: 272,
         height: size.height * 1,
         color: Colors.black,
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           children: [
             Image.asset(
-              width: 10,
               'assets/images/TWNSQR.png',
+              width: 156,
+              height: 43,
+              fit: BoxFit.contain,
             ),
             SizedBox(
-              height: size.height * 0.1,
+              height: size.height * 0.05,
             ),
-            SidebarItemWidget(
-              icon: Icons.calendar_today_outlined,
-              text: 'Activities',
-              onTap: () => goBranch(0),
+            ListTile(
+              leading: const CircleAvatar(
+                backgroundImage: AssetImage('assets/images/profile.png'),
+                backgroundColor: Colors.yellow,
+                radius: 15,
+              ),
+              title: const Text(
+                '  Profile',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              trailing: InkWell(
+                onTap: () {
+                  ref.read(themeProvider.notifier).toggleTheme();
+                },
+                child: const Icon(
+                  Icons.more_vert_outlined,
+                  color: Colors.white,
+                ),
+              ),
             ),
             SizedBox(
               height: size.height * 0.01,
             ),
             SidebarItemWidget(
-              icon: Icons.map_outlined,
-              text: 'Locations',
-              onTap: () => goBranch(1),
+              icon: Icons.calendar_today_outlined,
+              text: 'Activities',
+              onTap: () => goBranch(0),
             ),
             SizedBox(
               height: size.height * 0.01,
@@ -61,67 +77,42 @@ class SidebarWidget extends ConsumerWidget {
             ),
             SidebarItemWidget(
               icon: Icons.people_alt_outlined,
-              text: 'Comunities',
+              text: 'People',
               onTap: () => goBranch(3),
             ),
             SizedBox(
-              height: size.height * 0.01,
-            ),
-            SidebarItemWidget(
-              icon: Icons.star_outline_outlined,
-              text: 'Notifications',
-              onTap: () => goBranch(4),
-            ),
-            SizedBox(
               height: size.height * 0.03,
             ),
-            FilledButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    WidgetStateProperty.all<Color>(CustomColors.primary[600]!),
-              ),
-              onPressed: () {},
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: Colors.black,
-                      size: 20,
-                    ),
-                    SizedBox(width: 30),
-                    Text(
-                      'Create',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                  ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: FilledButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(
+                      CustomColors.primary[300]!),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const CircleAvatar(
-                  backgroundColor: Colors.yellow,
-                ),
-                const Text(
-                  'Profile',
-                  style: TextStyle(fontSize: 20, color: colorOptions),
-                ),
-                IconButton(
-                  onPressed: () {
-                    ref.read(themeProvider.notifier).toggleTheme();
-                  },
-                  icon: const Icon(
-                    Icons.more_vert_outlined,
-                    color: colorOptions,
+                onPressed: () {},
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Create',
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.03,
             ),
           ],
         ),

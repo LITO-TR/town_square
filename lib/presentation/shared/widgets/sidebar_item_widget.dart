@@ -17,7 +17,9 @@ class SidebarItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(icon, color: Colors.white),
-      title: Text(text, style: const TextStyle(color: Colors.white)),
+      title: Text('   $text',
+          style: const TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500)),
       onTap: onTap,
     );
   }

@@ -40,7 +40,8 @@ class DashedLineWithTitlesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = CustomColors.neutral[300]!
+      //..color = CustomColors.neutral[300]!
+      ..color = isDark ? const Color(0xFF6C757D) : const Color(0xFFDEE2E6)
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 

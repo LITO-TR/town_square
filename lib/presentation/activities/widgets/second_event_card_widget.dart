@@ -50,6 +50,12 @@ class SecondEventCardWidget extends StatelessWidget {
                             style: ButtonStyle(
                               backgroundColor:
                                   WidgetStateProperty.all<Color>(Colors.white),
+                              shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
                             ),
                             onPressed: () {},
                             child: const Text(

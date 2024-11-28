@@ -35,6 +35,11 @@ class EventCardWidget extends StatelessWidget {
             ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
                 ),
                 onPressed: () {},
                 child: const Row(

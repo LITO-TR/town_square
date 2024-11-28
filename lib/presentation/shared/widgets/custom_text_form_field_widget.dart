@@ -79,12 +79,15 @@ class CustomTextFormFieldWidget extends StatelessWidget {
           keyboardType: keyboardType,
           style: const TextStyle(color: CustomColors.neutral),
           decoration: InputDecoration(
-            suffixIcon: suffixIcon ??
-                Icon(
-                  size: 32,
-                  suffixIconData,
-                  color: const Color(0xFF667085),
-                ),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(right: 25.0),
+              child: suffixIcon ??
+                  Icon(
+                    size: 32,
+                    suffixIconData,
+                    color: const Color(0xFFADB5BD),
+                  ),
+            ),
             prefixIcon: prefix,
             floatingLabelStyle: const TextStyle(
                 color: CustomColors.neutral,
@@ -103,12 +106,8 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             errorText: errorMessage,
             focusColor: colors.primary,
             floatingLabelBehavior: FloatingLabelBehavior.never,
-            contentPadding: const EdgeInsets.fromLTRB(
-              20.0,
-              8.0,
-              20.0,
-              8.0,
-            ),
+            contentPadding:
+                const EdgeInsets.only(top: 15, left: 30, bottom: 15),
           ),
         ),
       ),
