@@ -44,14 +44,12 @@ class CustomCardGoalWidget extends StatelessWidget {
                       height: size.height * 0.003,
                     ),
                     SizedBox(
+                      width: size.width * 0.55,
                       child: Text(
-                        'Join more sport activities to collect more points',
+                        'Complete your weekly challenges and unlock new achievements',
                         style: textTheme.bodySmall?.copyWith(
                             fontWeight: FontWeight.w400, color: Colors.black),
                       ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
                     ),
                     Row(
                       children: [
@@ -67,9 +65,6 @@ class CustomCardGoalWidget extends StatelessWidget {
                           onPressed: () {},
                         ),
                       ],
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
                     ),
                   ],
                 ),

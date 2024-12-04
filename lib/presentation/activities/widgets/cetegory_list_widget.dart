@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:town_square/config/helper/show_modal_bottom_sheet_helper.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 import 'package:town_square/infrastructure/constants/data.dart';
 import 'package:town_square/presentation/activities/providers/activities_provider.dart';
@@ -20,17 +21,20 @@ class CategoryListWidget extends ConsumerWidget {
         separatorBuilder: (_, __) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
           if (index == 0) {
-            return Container(
+            return GestureDetector(
+              onTap: () {
+                ShowModalBottomSheetHelper().showFiltersBottomSheet(context);
+              },
+              child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                 decoration: BoxDecoration(
                   color: CustomColors.secondaryB[200],
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: const Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                ));
+                child: Image.asset('assets/images/icons/sliders.png'),
+              ),
+            );
           } else {
             final category = ActivityCategory.values[index - 1];
             return CategoryItemWidget(

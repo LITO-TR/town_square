@@ -37,7 +37,7 @@ class SecondEventCardWidget extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 8,
                       ),
                       Row(
                         children: [

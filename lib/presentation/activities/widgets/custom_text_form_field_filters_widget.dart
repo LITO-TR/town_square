@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 
-class CustomTextFormFieldWidget extends StatelessWidget {
+class CustomTextFormFieldFiltersWidget extends StatelessWidget {
   final String? label;
   final bool readOnly;
   final double? height;
@@ -23,7 +23,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final void Function()? onTap;
   final bool showOnly;
 
-  const CustomTextFormFieldWidget({
+  const CustomTextFormFieldFiltersWidget({
     super.key,
     this.height,
     this.readOnly = false,
@@ -56,14 +56,6 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              offset: const Offset(2, 4),
-              blurRadius: 6,
-              spreadRadius: 2,
-            ),
-          ],
         ),
         child: TextFormField(
           onTap: onTap,
@@ -94,9 +86,10 @@ class CustomTextFormFieldWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 14),
 
-            border: InputBorder.none,
-            // border: OutlineInputBorder(
-            //     borderSide: BorderSide(color: Colors.transparent)),
+            //border: InputBorder.none,
+            border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(10)),
             isDense: true,
             hintText: hint,
             hintStyle: const TextStyle(

@@ -83,7 +83,7 @@ Widget _buildDesktopSideColumn(Size size) {
   return SizedBox(
     height: size.height,
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30) ,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,

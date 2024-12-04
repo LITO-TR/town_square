@@ -41,7 +41,9 @@ class CustomButtonWidgetState extends State<CustomButtonWidget> {
               borderRadius: BorderRadius.circular(4),
             ),
             minimumSize: const Size(0, 22),
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+            ),
           ),
           child: Align(
             alignment: Alignment.center,
