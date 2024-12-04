@@ -57,7 +57,9 @@ class ActivitiesView extends ConsumerWidget {
                   SizedBox(height: size.height * 0.02),
                   const Padding(
                     padding: EdgeInsets.only(left: 18.0),
-                    child: CategoryListWidget(),
+                    child: CategoryListWidget(
+                      hideFirstItem: false,
+                    ),
                   ),
                   SizedBox(height: size.height * 0.03),
                   const Padding(
@@ -83,7 +85,7 @@ Widget _buildDesktopSideColumn(Size size) {
   return SizedBox(
     height: size.height,
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30) ,
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,

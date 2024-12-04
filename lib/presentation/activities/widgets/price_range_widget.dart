@@ -25,11 +25,11 @@ class PriceRangeWidgetState extends State<PriceRangeWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('0€',
+                Text('${_currentRangeValues.start.toStringAsFixed(0)}€',
                     style: textTheme.bodyLarge?.copyWith(
                         color: CustomColors.neutral[600],
                         fontWeight: FontWeight.w700)),
-                Text('20€',
+                Text('${_currentRangeValues.end.toStringAsFixed(0)}€',
                     style: textTheme.bodyLarge?.copyWith(
                         color: CustomColors.neutral[600],
                         fontWeight: FontWeight.w700)),

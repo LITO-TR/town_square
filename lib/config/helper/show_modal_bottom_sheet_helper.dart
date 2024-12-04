@@ -49,6 +49,7 @@ class ShowModalBottomSheetHelper {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: size.height * 0.015),
                         Center(
                           child: Container(
                             margin: const EdgeInsets.only(top: 8.0),
@@ -105,7 +106,9 @@ class ShowModalBottomSheetHelper {
                         SizedBox(height: size.height * 0.03),
                         const Padding(
                           padding: EdgeInsets.only(left: 30.0),
-                          child: CategoryListWidget(),
+                          child: CategoryListWidget(
+                            hideFirstItem: true,
+                          ),
                         ),
                         SizedBox(height: size.height * 0.03),
                         Padding(

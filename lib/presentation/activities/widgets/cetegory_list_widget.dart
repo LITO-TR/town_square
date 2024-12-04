@@ -7,7 +7,9 @@ import 'package:town_square/presentation/activities/providers/activities_provide
 import 'package:town_square/presentation/activities/widgets/category_item_widget.dart';
 
 class CategoryListWidget extends ConsumerWidget {
-  const CategoryListWidget({super.key});
+  final bool hideFirstItem;
+
+  const CategoryListWidget({super.key, required this.hideFirstItem});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,10 +19,12 @@ class CategoryListWidget extends ConsumerWidget {
       height: 30,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 1 + ActivityCategory.values.length,
+        itemCount: hideFirstItem
+            ? ActivityCategory.values.length
+            : 1 + ActivityCategory.values.length,
         separatorBuilder: (_, __) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
-          if (index == 0) {
+          if (!hideFirstItem && index == 0) {
             return GestureDetector(
               onTap: () {
                 ShowModalBottomSheetHelper().showFiltersBottomSheet(context);
@@ -36,7 +40,8 @@ class CategoryListWidget extends ConsumerWidget {
               ),
             );
           } else {
-            final category = ActivityCategory.values[index - 1];
+            final category =
+                ActivityCategory.values[hideFirstItem ? index : index - 1];
             return CategoryItemWidget(
               category: category,
               isSelected: activitiesState.selectedCategory == category,
