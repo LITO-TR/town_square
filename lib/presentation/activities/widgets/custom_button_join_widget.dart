@@ -3,8 +3,10 @@ import 'package:town_square/config/theme/custom_colors.dart';
 
 class CustomButtonJoinWidget extends StatefulWidget {
   final bool isDark;
+  final void Function() onPressed;
 
-  const CustomButtonJoinWidget({super.key, required this.isDark});
+  const CustomButtonJoinWidget(
+      {super.key, required this.isDark, required this.onPressed});
 
   @override
   CustomButtonJoinWidgetState createState() => CustomButtonJoinWidgetState();
@@ -43,7 +45,7 @@ class CustomButtonJoinWidgetState extends State<CustomButtonJoinWidget> {
             minimumSize: const Size(0, 20),
           ),
           onPressed: () {
-            debugPrint("Unirse a la actividad");
+            widget.onPressed();
           },
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:town_square/config/helper/get_service_widget.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 import 'package:town_square/domain/activity_entity.dart';
 import 'package:town_square/presentation/activities/widgets/custom_button_join_widget.dart';
@@ -140,7 +142,12 @@ class ActivityCardWidget extends ConsumerWidget {
                         disabledBackgroundColor: CustomColors.neutral,
                         disabledForegroundColor: Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(
+                          '/activities/details',
+                          extra: {'activity': activity},
+                        );
+                      },
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
@@ -150,45 +157,18 @@ class ActivityCardWidget extends ConsumerWidget {
                   if (activity.availableSpots > 0)
                     CustomButtonJoinWidget(
                       isDark: themePv,
+                      onPressed: () {
+                        context.push(
+                          '/activities/details',
+                          extra: {'activity': activity},
+                        );
+                      },
                     ),
                 ],
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget getServiceWidget(String service, TextTheme textTheme) {
-    final Map<String, Color> serviceColors = {
-      'light': CustomColors.lightIntensity,
-      'medium': CustomColors.mediumIntensity,
-      'high': CustomColors.highIntensity,
-      'veryHighIntensity': CustomColors.veryHighIntensity,
-      'workspace': CustomColors.workSpaceTag,
-      'childcare': CustomColors.childCareTag,
-    };
-    final Map<String, Color> titleServiceColors = {
-      'light': CustomColors.lightIntensityTitle,
-      'medium': CustomColors.mediumIntensityTitle,
-      'high': CustomColors.highIntensityTitle,
-      'veryHighIntensity': CustomColors.veryHighIntensityTitle,
-      'workspace': CustomColors.workSpaceTagTitle,
-      'childcare': CustomColors.childCareTagTitle,
-    };
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2),
-        color: serviceColors[service] ?? CustomColors.neutral[200],
-      ),
-      child: Text(
-        service,
-        style: textTheme.bodySmall?.copyWith(
-            color: titleServiceColors[service],
-            fontWeight: FontWeight.w700,
-            fontSize: 10),
       ),
     );
   }

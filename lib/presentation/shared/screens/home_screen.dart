@@ -12,8 +12,10 @@ import 'package:town_square/presentation/shared/providers/device_type_provider.d
 import 'package:town_square/presentation/shared/widgets/sidebar_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key, required this.navigationShell});
-  final StatefulNavigationShell navigationShell;
+  const HomeScreen({
+    super.key,
+  });
+  //final StatefulNavigationShell navigationShell;
 
   @override
   HomeScreenState createState() => HomeScreenState();
@@ -39,10 +41,10 @@ class HomeScreenState extends ConsumerState<HomeScreen>
   }
 
   void _goBranch(int index) {
-    widget.navigationShell.goBranch(
-      index,
-      initialLocation: index == widget.navigationShell.currentIndex,
-    );
+    // widget.navigationShell.goBranch(
+    //   index,
+    //   initialLocation: index == widget.navigationShell.currentIndex,
+    // );
   }
 
   @override

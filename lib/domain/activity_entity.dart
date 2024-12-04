@@ -10,7 +10,9 @@ class ActivityEntity {
   final bool isHourly;
   final ActivityCategory category;
   final List<String> services;
-
+  final String organizerName;
+  final String estado;
+  final String date;
   ActivityEntity({
     required this.time,
     required this.duration,
@@ -21,5 +23,8 @@ class ActivityEntity {
     required this.isHourly,
     required this.category,
     required this.services,
+    required this.organizerName,
+    required this.estado,
+    required this.date,
   });
 }

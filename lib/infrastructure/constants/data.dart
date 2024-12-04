@@ -25,6 +25,9 @@ List<ActivityEntity> activities = [
     isHourly: false,
     category: ActivityCategory.calm,
     services: ['light', 'workspace'],
+    organizerName: "Ashfak Sayem",
+    estado: "Estepona, Malaga",
+    date: "Friday, November 29",
   ),
   ActivityEntity(
     time: "09:00",
@@ -36,6 +39,9 @@ List<ActivityEntity> activities = [
     isHourly: false,
     category: ActivityCategory.creative,
     services: ['medium', 'childcare'],
+    organizerName: "Maria Lopez",
+    estado: "Madrid, Spain",
+    date: "Saturday, December 1",
   ),
   ActivityEntity(
     time: "12:30",
@@ -47,6 +53,9 @@ List<ActivityEntity> activities = [
     isHourly: false,
     category: ActivityCategory.sports,
     services: ['high', 'workspace'],
+    organizerName: "John Doe",
+    estado: "Barcelona, Spain",
+    date: "Sunday, December 2",
   ),
   ActivityEntity(
     time: "13:15",
@@ -58,6 +67,9 @@ List<ActivityEntity> activities = [
     isHourly: false,
     category: ActivityCategory.food,
     services: ['workspace', 'childcare'],
+    organizerName: "Laura Martinez",
+    estado: "Seville, Spain",
+    date: "Monday, December 3",
   ),
   ActivityEntity(
     time: "15:00",
@@ -69,6 +81,9 @@ List<ActivityEntity> activities = [
     isHourly: true,
     category: ActivityCategory.kids,
     services: ['childcare', 'workspace'],
+    organizerName: "Carlos Sanchez",
+    estado: "Valencia, Spain",
+    date: "Tuesday, December 4",
   ),
   ActivityEntity(
     time: "15:00",
@@ -80,5 +95,8 @@ List<ActivityEntity> activities = [
     isHourly: false,
     category: ActivityCategory.sports,
     services: ['high', 'workspace'],
+    organizerName: "Ana Garcia",
+    estado: "Bilbao, Spain",
+    date: "Wednesday, December 5",
   ),
 ];
