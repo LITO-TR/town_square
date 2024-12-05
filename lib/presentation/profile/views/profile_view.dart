@@ -16,47 +16,18 @@ class ProfileView extends StatefulWidget {
 
 class ProfileViewState extends State<ProfileView>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late PageController _pageController;
   int selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    // Inicializar el TabController
-    _tabController = TabController(length: 3, vsync: this);
-
-    _tabController.addListener(() {
-      setState(() {
-        selectedIndex = _tabController.index;
-      });
-    });
-  }
-
-  Widget customTab(String text, Color borderColor, bool isSelected) {
-    return Container(
-      width: 210,
-      height: 53,
-      decoration: BoxDecoration(
-        color: isSelected ? CustomColors.primary[300] : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: borderColor, width: 2),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-            color: isSelected ? Colors.white : borderColor,
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
+    _pageController = PageController();
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -82,6 +53,7 @@ class ProfileViewState extends State<ProfileView>
                 height: 1,
                 color: const Color(0xFFEBEEF2),
               ),
+              SizedBox(height: size.height * 0.02),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -109,58 +81,22 @@ class ProfileViewState extends State<ProfileView>
                 color: const Color(0xFFEBEEF2),
               ),
               SizedBox(height: size.height * 0.02),
-
-              // Tab controller
-              DefaultTabController(
-                length: 3, // Tres tabs
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Tabs
-                    TabBar(
-                      controller: _tabController,
-                      splashFactory: NoSplash.splashFactory,
-                      enableFeedback: false,
-                      indicatorColor: Colors.transparent,
-                      dividerColor: Colors.transparent,
-                      tabs: [
-                        Tab(
-                          child: customTab(
-                            'About',
-                            CustomColors.primary[300]!,
-                            _tabController.index == 0,
-                          ),
-                        ),
-                        Tab(
-                          child: customTab(
-                            'Events',
-                            CustomColors.primary[300]!,
-                            _tabController.index == 1,
-                          ),
-                        ),
-                        Tab(
-                          child: customTab(
-                            'Reviews',
-                            CustomColors.primary[300]!,
-                            _tabController.index == 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: size.height * 0.02),
-
-                    SizedBox(
-                      height: size.height * 0.3,
-                      child: TabBarView(
-                        controller:
-                            _tabController, // Asociamos el controlador aquí también
-                        children: const [
-                          AboutWidget(),
-                          MyEventsWidgets(),
-                          ReviewsWidget(),
-                        ],
-                      ),
-                    ),
+              _menuBar(context, size),
+              SizedBox(height: size.height * 0.02),
+              Expanded(
+                child: PageView(
+                  controller: _pageController,
+                  physics: const ClampingScrollPhysics(),
+                  onPageChanged: (int i) {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    setState(() {
+                      selectedIndex = i;
+                    });
+                  },
+                  children: const [
+                    AboutWidget(),
+                    MyEventsWidgets(),
+                    ReviewsWidget(),
                   ],
                 ),
               ),
@@ -170,5 +106,66 @@ class ProfileViewState extends State<ProfileView>
         ),
       ),
     );
+  }
+
+  Widget _menuBar(BuildContext context, Size size) {
+    return Container(
+      width: size.width * 0.9,
+      height: size.height * 0.044,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _buildTab(context, size, "About", 0),
+          const SizedBox(width: 10),
+          _buildTab(context, size, "Events", 1),
+          const SizedBox(width: 10),
+          _buildTab(context, size, "Reviews", 2),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTab(BuildContext context, Size size, String text, int index) {
+    return Expanded(
+      child: InkWell(
+        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+        onTap: () => _onTabButtonPress(index),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          alignment: Alignment.center,
+          decoration: (selectedIndex == index)
+              ? BoxDecoration(
+                  color: CustomColors.primary[300]!,
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                )
+              : BoxDecoration(
+                  border: Border.all(
+                    color: CustomColors.primary[300]!,
+                    width: 2,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                ),
+          child: Text(
+            text,
+            style: (selectedIndex == index)
+                ? const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                  )
+                : TextStyle(
+                    color: CustomColors.primary[300],
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _onTabButtonPress(int index) {
+    _pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 }

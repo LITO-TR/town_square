@@ -7,8 +7,6 @@ import 'package:town_square/config/theme/custom_colors.dart';
 
 import 'package:town_square/presentation/activities/providers/activities_provider.dart';
 import 'package:town_square/presentation/activities/providers/selection_provider.dart';
-import 'package:town_square/presentation/activities/views/activities_view.dart';
-import 'package:town_square/presentation/create_event/screens/create_event_screen.dart';
 
 import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
@@ -143,7 +141,7 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                     Tab(
                       icon: GestureDetector(
                         onTap: () {
-                          context.push('/home/create-event');
+                          context.push('/activities/create-event');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -203,32 +201,6 @@ class HomeScreenState extends ConsumerState<HomeScreen>
               ),
             )
           : null,
-    );
-  }
-
-  // Build a Navigator for each tab
-  Widget _buildNavigatorWidget(int index) {
-    return Navigator(
-      onGenerateRoute: (settings) {
-        switch (index) {
-          case 0:
-            return MaterialPageRoute(
-                builder: (context) => const ActivitiesView());
-          case 1:
-            return MaterialPageRoute(builder: (context) => const SizedBox());
-          case 2:
-            return MaterialPageRoute(builder: (context) => const SizedBox());
-          case 3:
-            return MaterialPageRoute(builder: (context) => const SizedBox());
-          case 4:
-            return MaterialPageRoute(builder: (context) => const SizedBox());
-          case 5:
-            return MaterialPageRoute(
-                builder: (context) => const CreateEventScreen());
-          default:
-            return MaterialPageRoute(builder: (context) => const SizedBox());
-        }
-      },
     );
   }
 }

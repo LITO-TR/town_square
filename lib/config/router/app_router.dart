@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:town_square/config/router/app_router_notifier.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
+import 'package:town_square/presentation/activities/screen/activity_detail_screen.dart';
 
 import 'package:town_square/presentation/activities/views/activities_view.dart';
 import 'package:town_square/presentation/create_event/screens/create_event_screen.dart';
@@ -34,7 +36,7 @@ final goRouterProvider = Provider(
     final goRouterNotifier = ref.read(goRouterNotifierProvider);
 
     return GoRouter(
-      initialLocation: '/home',
+      initialLocation: '/activities',
       refreshListenable: goRouterNotifier,
       routes: [
         ShellRoute(
@@ -44,34 +46,25 @@ final goRouterProvider = Provider(
           },
           routes: [
             GoRoute(
-              path: "/home",
-              name: "Home",
+              path: "/activities",
+              name: "Activities",
               builder: (BuildContext context, GoRouterState state) =>
                   const ActivitiesView(),
               routes: [
                 GoRoute(
-                    path: "activities",
-                    name: "Activities",
-                    builder: (BuildContext context, GoRouterState state) =>
-                        const ActivitiesView(),
-                    routes: [
-                      GoRoute(
-                          path: "notifications",
-                          name: "Notifications",
-                          pageBuilder:
-                              (BuildContext context, GoRouterState state) =>
-                                  buildCustomTransitionPage(
-                                      child: const NotificationsView(),
-                                      context: context)),
-                      GoRoute(
-                          path: "profile",
-                          name: "Profile",
-                          pageBuilder:
-                              (BuildContext context, GoRouterState state) =>
-                                  buildCustomTransitionPage(
-                                      child: const ProfileView(),
-                                      context: context)),
-                    ]),
+                  path: "notifications",
+                  name: "Notifications",
+                  pageBuilder: (BuildContext context, GoRouterState state) =>
+                      buildCustomTransitionPage(
+                          child: const NotificationsView(), context: context),
+                ),
+                GoRoute(
+                  path: "profile",
+                  name: "Profile",
+                  pageBuilder: (BuildContext context, GoRouterState state) =>
+                      buildCustomTransitionPage(
+                          child: const ProfileView(), context: context),
+                ),
                 GoRoute(
                   path: "create-event",
                   name: "CreateEvent",
@@ -80,8 +73,46 @@ final goRouterProvider = Provider(
                 ),
               ],
             ),
+
             // Aquí puedes agregar más rutas según sea necesario
+            GoRoute(
+              path: "map",
+              name: "Map",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Center(
+                child: Text('Map'),
+              ),
+            ),
+            GoRoute(
+              path: "users",
+              name: "User",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Center(
+                child: Text('Users'),
+              ),
+            ),
+            GoRoute(
+              path: "star",
+              name: "Star",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Center(
+                child: Text('Star'),
+              ),
+            ),
           ],
+        ),
+        GoRoute(
+          path: "/details",
+          name: "Details",
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            ActivityEntity activity = state.extra as ActivityEntity;
+
+            return buildCustomTransitionPage(
+                child: ActivityDetailScreen(
+                  activity: activity,
+                ),
+                context: context);
+          },
         ),
       ],
     );

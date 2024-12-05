@@ -16,7 +16,7 @@ class MainContentActvDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 16),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(

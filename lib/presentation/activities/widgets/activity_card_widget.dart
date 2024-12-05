@@ -153,8 +153,8 @@ class ActivityCardWidget extends ConsumerWidget {
                       onPressed: () {
                         if (deviceType == DeviceType.mobile) {
                           context.push(
-                            '/home/activities/details',
-                            extra: {'activity': activity},
+                            '/details',
+                            extra: activity,
                           );
                         } else {
                           _openDrawer(context, ref);
@@ -172,8 +172,8 @@ class ActivityCardWidget extends ConsumerWidget {
                       onPressed: () {
                         if (deviceType == DeviceType.mobile) {
                           context.push(
-                            '/home/activities/details',
-                            extra: {'activity': activity},
+                            '/details',
+                            extra: activity,
                           );
                         } else {
                           _openDrawer(context, ref);

@@ -42,7 +42,7 @@ class HeaderActivitiesWidget extends ConsumerWidget {
                       InkWell(
                         onTap: () {
                           //ref.read(themeProvider.notifier).toggleTheme();
-                          context.push('/home/activities/notifications');
+                          context.push('/activities/notifications');
                         },
                         child: Image.asset(
                           color: themePv ? Colors.white : Colors.black,
@@ -56,7 +56,7 @@ class HeaderActivitiesWidget extends ConsumerWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          context.push('/home/activities/profile');
+                          context.push('/activities/profile');
                         },
                         child: const CircleAvatar(
                           backgroundImage:
