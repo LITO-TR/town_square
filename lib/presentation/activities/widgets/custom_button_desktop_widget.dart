@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 
-class CustomButtonWidget extends StatefulWidget {
+class CustomButtonDesktopWidget extends StatefulWidget {
   final String title;
   final void Function() onPressed;
 
-  const CustomButtonWidget(
+  const CustomButtonDesktopWidget(
       {super.key, required this.title, required this.onPressed});
 
   @override
-  CustomButtonWidgetState createState() => CustomButtonWidgetState();
+  CustomButtonDesktopWidgetState createState() =>
+      CustomButtonDesktopWidgetState();
 }
 
-class CustomButtonWidgetState extends State<CustomButtonWidget> {
+class CustomButtonDesktopWidgetState extends State<CustomButtonDesktopWidget> {
   bool _isHovered = false;
 
   @override
@@ -41,7 +42,7 @@ class CustomButtonWidgetState extends State<CustomButtonWidget> {
               borderRadius: BorderRadius.circular(4),
             ),
             minimumSize: const Size(0, 22),
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           ),
           child: Align(
             alignment: Alignment.center,

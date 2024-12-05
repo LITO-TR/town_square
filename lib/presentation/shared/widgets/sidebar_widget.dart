@@ -4,14 +4,12 @@ import 'package:town_square/config/helper/top_indicator.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 
 class SidebarWidget extends ConsumerWidget {
-  final Function(int) goBranch;
   final bool themePv;
   final TabController controller;
 
   const SidebarWidget({
     super.key,
     required this.controller,
-    required this.goBranch,
     required this.themePv,
   });
 
@@ -38,6 +36,7 @@ class SidebarWidget extends ConsumerWidget {
             RotatedBox(
               quarterTurns: 1,
               child: TabBar(
+                physics: const NeverScrollableScrollPhysics(),
                 dividerColor: Colors.transparent,
                 indicator: TopIndicatorDesktop(),
                 splashFactory: NoSplash.splashFactory,

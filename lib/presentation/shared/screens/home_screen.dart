@@ -19,7 +19,9 @@ import 'package:town_square/presentation/shared/widgets/sidebar_widget.dart';
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({
     super.key,
+    required this.child,
   });
+  final Widget child;
 
   @override
   HomeScreenState createState() => HomeScreenState();
@@ -47,13 +49,6 @@ class HomeScreenState extends ConsumerState<HomeScreen>
     setState(() {});
   }
 
-  void _goBranch(int index) {
-    // widget.navigationShell.goBranch(
-    //   index,
-    //   initialLocation: index == widget.navigationShell.currentIndex,
-    // );
-  }
-
   @override
   Widget build(BuildContext context) {
     final themePv = ref.watch(themeProvider);
@@ -75,31 +70,24 @@ class HomeScreenState extends ConsumerState<HomeScreen>
         children: [
           if (deviceType == DeviceType.desktop)
             SidebarWidget(
-              goBranch: _goBranch,
               themePv: themePv,
               controller: _tabControllerDesktop,
             ),
           Expanded(
-            child: TabBarView(
-                controller: deviceType == DeviceType.mobile
-                    ? _tabControllerMobile
-                    : _tabControllerDesktop,
-                children: deviceType == DeviceType.mobile
-                    ? [
-                        const ActivitiesView(),
-                        const SizedBox(),
-                        const SizedBox(),
-                        const SizedBox(),
-                        const SizedBox(),
-                      ]
-                    : [
-                        const ActivitiesView(),
-                        const SizedBox(),
-                        const SizedBox(),
-                        const SizedBox(),
-                        const CreateEventScreen(),
-                        const SizedBox(),
-                      ]),
+            child: IndexedStack(
+              index: deviceType == DeviceType.mobile
+                  ? _tabControllerMobile.index
+                  : _tabControllerDesktop.index,
+              children: [
+                widget.child
+                // _buildNavigatorWidget(0), // Activities
+                // _buildNavigatorWidget(1), // Empty Placeholder
+                // _buildNavigatorWidget(2), // Empty Placeholder
+                // _buildNavigatorWidget(3), // Empty Placeholder
+                // _buildNavigatorWidget(4), // Empty Placeholder
+                // _buildNavigatorWidget(5), // Create Event (Desktop only)
+              ],
+            ),
           ),
         ],
       ),
@@ -209,12 +197,38 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                               : (isDark ? Colors.white : Colors.black),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             )
           : null,
+    );
+  }
+
+  // Build a Navigator for each tab
+  Widget _buildNavigatorWidget(int index) {
+    return Navigator(
+      onGenerateRoute: (settings) {
+        switch (index) {
+          case 0:
+            return MaterialPageRoute(
+                builder: (context) => const ActivitiesView());
+          case 1:
+            return MaterialPageRoute(builder: (context) => const SizedBox());
+          case 2:
+            return MaterialPageRoute(builder: (context) => const SizedBox());
+          case 3:
+            return MaterialPageRoute(builder: (context) => const SizedBox());
+          case 4:
+            return MaterialPageRoute(builder: (context) => const SizedBox());
+          case 5:
+            return MaterialPageRoute(
+                builder: (context) => const CreateEventScreen());
+          default:
+            return MaterialPageRoute(builder: (context) => const SizedBox());
+        }
+      },
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:town_square/domain/entities/activity_entity.dart';
+import 'package:town_square/domain/entities/comment_entity.dart';
 import 'package:town_square/domain/entities/notification_entity.dart';
+import 'package:town_square/domain/entities/user_entity.dart';
 
 enum ActivityCategory {
   all("All"),
@@ -130,5 +132,44 @@ List<NotificationEntity> notifications = [
     time: "yesterday",
     avatarImage: "assets/images/notifications/not_profile4.png",
     typeNotification: NotificationType.friendRequest,
+  ),
+];
+
+final UserEntity user = UserEntity(
+  name: 'Natalia Barajas',
+  status: 'Status: Mayor 👑',
+  numberOrganized: 15,
+  numberAssisted: 20,
+  description:
+      'Sun-kissed yogi, language lover, and eternal optimist. ☀️📚 Living the dream in Estepona. Join me on my journey to a healthier, happier lifestyle :)',
+  location: 'Malaga, Spain',
+  occupation: 'Product Designer',
+  interests: [
+    'Creating inclusive digital spaces',
+    'Photography',
+    'Yoga',
+    'Languages',
+    'Building Communities'
+  ],
+);
+
+List<CommentEntity> comments = [
+  CommentEntity(
+    name: "Brittany Brewer",
+    comment:
+        "Incredible! The serene setting and your expert guidance created a truly transformative experience. I left feeling refreshed and centered. Thank you!",
+    urlImage: "assets/images/comments/com1.png",
+  ),
+  CommentEntity(
+    name: "Lee Suarez",
+    comment:
+        "I wasn't a yoga fan, but Andrea's beach yoga session was a game-changer. The beautiful setting and clear instructions made it easy and enjoyable. I'm hooked!",
+    urlImage: "assets/images/comments/com2.png",
+  ),
+  CommentEntity(
+    name: "Alex Johnson",
+    comment:
+        "The beach yoga session was exactly what I needed. The combination of the ocean breeze and the calming exercises helped me unwind and find my inner peace. Highly recommend!",
+    urlImage: "assets/images/comments/com3.png",
   ),
 ];

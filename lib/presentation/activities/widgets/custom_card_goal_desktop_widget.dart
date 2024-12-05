@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
-import 'package:town_square/presentation/activities/widgets/custom_button_widget.dart';
+import 'package:town_square/presentation/activities/widgets/custom_button_desktop_widget.dart';
+
 import 'package:town_square/presentation/activities/widgets/progress_activities_widget.dart';
 
 class CustomCardGoalDesktopWidget extends StatelessWidget {
@@ -60,14 +61,14 @@ class CustomCardGoalDesktopWidget extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              CustomButtonWidget(
+                              CustomButtonDesktopWidget(
                                 title: 'Join now',
                                 onPressed: () {},
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
-                              CustomButtonWidget(
+                              CustomButtonDesktopWidget(
                                 title: 'My points',
                                 onPressed: () {},
                               ),

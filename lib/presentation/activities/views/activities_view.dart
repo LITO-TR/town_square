@@ -73,7 +73,7 @@ class ActivitiesView extends ConsumerWidget {
             if (deviceType == DeviceType.desktop)
               Expanded(
                 flex: 1,
-                child: _buildDesktopSideColumn(size, ref),
+                child: _buildDesktopSideColumn(size, ref, context),
               ),
           ],
         ),
@@ -82,7 +82,7 @@ class ActivitiesView extends ConsumerWidget {
   }
 }
 
-Widget _buildDesktopSideColumn(Size size, ref) {
+Widget _buildDesktopSideColumn(Size size, ref, context) {
   final themePv = ref.watch(themeProvider);
   return SizedBox(
     height: size.height,
@@ -101,7 +101,8 @@ Widget _buildDesktopSideColumn(Size size, ref) {
               children: [
                 InkWell(
                   onTap: () {
-                    ref.read(themeProvider.notifier).toggleTheme();
+                    //ref.read(themeProvider.notifier).toggleTheme();
+                    context.push('/home/activities/notifications');
                   },
                   child: Image.asset(
                     color: themePv ? Colors.white : Colors.black,
