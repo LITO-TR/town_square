@@ -25,7 +25,7 @@ class CustomCardGoalDesktopWidget extends StatelessWidget {
       ),
       child: Padding(
         padding:
-            const EdgeInsets.only(right: 16.0, left: 16.0, top: 14, bottom: 14),
+            const EdgeInsets.only(right: 10.0, left: 10.0, top: 14, bottom: 14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,7 +34,8 @@ class CustomCardGoalDesktopWidget extends StatelessWidget {
               children: [
                 Text(
                   'You’re close to your goal!',
-                  style: textTheme.titleLarge?.copyWith(color: Colors.black),
+                  style: textTheme.titleLarge
+                      ?.copyWith(color: Colors.black, fontSize: 20),
                 ),
                 SizedBox(
                   height: size.height * 0.001,
@@ -43,15 +44,16 @@ class CustomCardGoalDesktopWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: size.width * 0.13,
+                      width: size.width * 0.15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Join more sport activities to collect more points',
+                            'Complete your weekly challenges and unlock new achievements!',
                             style: textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w400,
-                                color: Colors.black),
+                                color: Colors.black,
+                                fontSize: 12),
                           ),
                           SizedBox(
                             height: size.height * 0.015,

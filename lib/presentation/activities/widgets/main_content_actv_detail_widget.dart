@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:town_square/config/helper/get_service_widget.dart';
-import 'package:town_square/domain/activity_entity.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
 import 'package:town_square/presentation/activities/widgets/activity_information_item_widget.dart';
 
 import 'package:town_square/presentation/activities/widgets/organizer_activity_widget.dart';

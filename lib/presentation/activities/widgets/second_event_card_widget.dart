@@ -11,7 +11,7 @@ class SecondEventCardWidget extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/event.png',
+              'assets/images/farmers.png',
               fit: BoxFit.fill,
             ),
           ),
@@ -21,10 +21,14 @@ class SecondEventCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(left: 10, top: 25),
+                  padding: EdgeInsets.only(left: 10, top: 10),
                   child: Text(
-                    "Popular events near you!",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    "Local Organic Market",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -33,38 +37,52 @@ class SecondEventCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "Unleash the fun! Explore the world of exciting events happening near you.",
+                        "New Arrivals from local producers",
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/profiles.png',
-                            width: 40,
-                            height: 40,
-                          ),
-                          ElevatedButton(
+                      Container(
+                        decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x1F000000),
+                              offset: Offset(3, 3),
+                              blurRadius: 8,
+                              spreadRadius: 0,
+                            ),
+                          ],
+                        ),
+                        child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
                                   WidgetStateProperty.all<Color>(Colors.white),
                               shape: WidgetStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                             ),
                             onPressed: () {},
-                            child: const Text(
-                              "See more",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
-                            ),
-                          ),
-                        ],
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Shop Now",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                      color: Colors.black),
+                                ),
+                                Icon(
+                                  Icons.arrow_circle_right_outlined,
+                                  color: Colors.black,
+                                  weight: 16,
+                                )
+                              ],
+                            )),
                       ),
                     ],
                   ),

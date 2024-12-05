@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:town_square/config/helper/top_indicator.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 
 import 'package:town_square/presentation/activities/providers/activities_provider.dart';
+import 'package:town_square/presentation/activities/providers/selection_provider.dart';
 import 'package:town_square/presentation/activities/views/activities_view.dart';
+import 'package:town_square/presentation/create_event/screens/create_event_screen.dart';
+
 import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
+import 'package:town_square/presentation/shared/widgets/custom_end_drawer_widget.dart';
 
 import 'package:town_square/presentation/shared/widgets/sidebar_widget.dart';
 
@@ -15,22 +20,24 @@ class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({
     super.key,
   });
-  //final StatefulNavigationShell navigationShell;
 
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
 class HomeScreenState extends ConsumerState<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+    with TickerProviderStateMixin {
+  late TabController _tabControllerMobile;
+  late TabController _tabControllerDesktop;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
-    _tabController.addListener(_tabChangeListener);
+    _tabControllerMobile = TabController(length: 5, vsync: this);
+    _tabControllerDesktop = TabController(length: 6, vsync: this);
 
+    _tabControllerMobile.addListener(_tabChangeListener);
+    _tabControllerDesktop.addListener(_tabChangeListener);
     Future.microtask(() {
       ref.read(activitiesProvider.notifier).getActivities();
     });
@@ -57,8 +64,12 @@ class HomeScreenState extends ConsumerState<HomeScreen>
       final width = MediaQuery.of(context).size.width;
       deviceTypeNotifier.updateDeviceType(width);
     });
+    final selectedActivity = ref.watch(selectedActivityProvider);
 
     return Scaffold(
+      endDrawer: selectedActivity != null
+          ? CustomEndDrawerWidget(activity: selectedActivity)
+          : null,
       extendBody: true,
       body: Row(
         children: [
@@ -66,18 +77,29 @@ class HomeScreenState extends ConsumerState<HomeScreen>
             SidebarWidget(
               goBranch: _goBranch,
               themePv: themePv,
+              controller: _tabControllerDesktop,
             ),
           Expanded(
             child: TabBarView(
-              controller: _tabController,
-              children: const [
-                ActivitiesView(),
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-              ],
-            ),
+                controller: deviceType == DeviceType.mobile
+                    ? _tabControllerMobile
+                    : _tabControllerDesktop,
+                children: deviceType == DeviceType.mobile
+                    ? [
+                        const ActivitiesView(),
+                        const SizedBox(),
+                        const SizedBox(),
+                        const SizedBox(),
+                        const SizedBox(),
+                      ]
+                    : [
+                        const ActivitiesView(),
+                        const SizedBox(),
+                        const SizedBox(),
+                        const SizedBox(),
+                        const CreateEventScreen(),
+                        const SizedBox(),
+                      ]),
           ),
         ],
       ),
@@ -89,7 +111,7 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                 child: TabBar(
                   splashFactory: NoSplash.splashFactory,
                   enableFeedback: false,
-                  controller: _tabController,
+                  controller: _tabControllerMobile,
                   indicator: TopIndicator(),
                   tabs: [
                     Tab(
@@ -97,7 +119,7 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: _tabController.index == 0
+                            color: _tabControllerMobile.index == 0
                                 ? CustomColors.neutral[200]!
                                 : Colors.white),
                         child: Tab(
@@ -105,7 +127,7 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                             'assets/images/icons/calendar.png',
                             width: 24,
                             height: 24,
-                            color: _tabController.index == 0
+                            color: _tabControllerMobile.index == 0
                                 ? CustomColors.primary[400]
                                 : (isDark ? Colors.white : Colors.black),
                           ),
@@ -117,33 +139,38 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: _tabController.index == 1
+                            color: _tabControllerMobile.index == 1
                                 ? CustomColors.neutral[300]!
                                 : Colors.white),
                         child: Image.asset(
                           'assets/images/icons/map.png',
                           width: 24,
                           height: 24,
-                          color: _tabController.index == 1
+                          color: _tabControllerMobile.index == 1
                               ? CustomColors.primary[400]
                               : (isDark ? Colors.white : Colors.black),
                         ),
                       ),
                     ),
                     Tab(
-                      icon: Container(
-                        decoration: BoxDecoration(
-                          color: CustomColors.primary[400],
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: CustomColors.primary[400]!,
-                            width: 7,
+                      icon: GestureDetector(
+                        onTap: () {
+                          context.push('/home/create-event');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: CustomColors.primary[400],
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: CustomColors.primary[400]!,
+                              width: 7,
+                            ),
                           ),
-                        ),
-                        child: const Icon(
-                          Icons.add,
-                          size: 24,
-                          color: Colors.white,
+                          child: const Icon(
+                            Icons.add,
+                            size: 24,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -152,14 +179,14 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: _tabController.index == 3
+                            color: _tabControllerMobile.index == 3
                                 ? CustomColors.neutral[300]!
                                 : Colors.white),
                         child: Image.asset(
                           'assets/images/icons/users.png',
                           width: 24,
                           height: 24,
-                          color: _tabController.index == 3
+                          color: _tabControllerMobile.index == 3
                               ? CustomColors.primary
                               : (isDark ? Colors.white : Colors.black),
                         ),
@@ -170,14 +197,14 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: _tabController.index == 4
+                            color: _tabControllerMobile.index == 4
                                 ? CustomColors.neutral[300]!
                                 : Colors.white),
                         child: Image.asset(
                           'assets/images/icons/star.png',
                           width: 24,
                           height: 24,
-                          color: _tabController.index == 4
+                          color: _tabControllerMobile.index == 4
                               ? CustomColors.primary
                               : (isDark ? Colors.white : Colors.black),
                         ),

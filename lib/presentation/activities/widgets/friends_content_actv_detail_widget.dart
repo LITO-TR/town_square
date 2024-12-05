@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
-import 'package:town_square/domain/activity_entity.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
 
 class FriendsContentActvDetailWidget extends StatelessWidget {
   const FriendsContentActvDetailWidget(

@@ -1,4 +1,5 @@
-import 'package:town_square/domain/activity_entity.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
+import 'package:town_square/domain/entities/notification_entity.dart';
 
 enum ActivityCategory {
   all("All"),
@@ -98,5 +99,36 @@ List<ActivityEntity> activities = [
     organizerName: "Ana Garcia",
     estado: "Bilbao, Spain",
     date: "Wednesday, December 5",
+  ),
+];
+
+List<NotificationEntity> notifications = [
+  NotificationEntity(
+    nameUser: "German Jose",
+    nameActivity: "5-a-side Football",
+    time: "Just now",
+    avatarImage: "assets/images/notifications/not_profile1.png",
+    typeNotification: NotificationType.invitation,
+  ),
+  NotificationEntity(
+    nameUser: "Emily Smith",
+    nameActivity: "Beach Yoga",
+    time: "10 min ago",
+    avatarImage: "assets/images/notifications/not_profile2.png",
+    typeNotification: NotificationType.join,
+  ),
+  NotificationEntity(
+    nameUser: "Amelia White",
+    nameActivity: "Kids Finger Painting Session",
+    time: "1h ago",
+    avatarImage: "assets/images/notifications/not_profile3.png",
+    typeNotification: NotificationType.invitation,
+  ),
+  NotificationEntity(
+    nameUser: "Clara Baker",
+    nameActivity: "",
+    time: "yesterday",
+    avatarImage: "assets/images/notifications/not_profile4.png",
+    typeNotification: NotificationType.friendRequest,
   ),
 ];

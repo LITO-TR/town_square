@@ -31,7 +31,8 @@ class CategoryItemWidget extends StatelessWidget {
         decoration: boxDecoration,
         child: Text(
           category.displayName,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(
+              color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400),
         ),
       ),
     );

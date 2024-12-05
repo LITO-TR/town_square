@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:town_square/config/theme/custom_colors.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
 import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
@@ -21,19 +22,13 @@ class HeaderActivitiesWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Tues, Nov 12',
-              style: textTheme.bodyMedium?.copyWith(
-                color: CustomColors.neutral[500],
-                fontWeight: FontWeight.w500,
-              ),
-            ),
             if (deviceType == DeviceType.mobile)
               Row(
                 children: [
                   InkWell(
                     onTap: () {
-                      ref.read(themeProvider.notifier).toggleTheme();
+                      //ref.read(themeProvider.notifier).toggleTheme();
+                      context.push('/home/activities/notifications');
                     },
                     child: Image.asset(
                       color: themePv ? Colors.white : Colors.black,
@@ -55,9 +50,8 @@ class HeaderActivitiesWidget extends ConsumerWidget {
           ],
         ),
         Text('This week in Estepona',
-            style: textTheme.displaySmall?.copyWith(
-              fontWeight: FontWeight.w500,
-            )),
+            style: textTheme.displaySmall
+                ?.copyWith(fontWeight: FontWeight.w500, fontSize: 20)),
         SizedBox(
           height: size.height * 0.018,
         )

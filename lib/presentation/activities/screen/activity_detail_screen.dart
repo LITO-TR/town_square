@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:town_square/domain/activity_entity.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
 import 'package:town_square/presentation/activities/widgets/background_image_actv_detail_widget.dart';
 import 'package:town_square/presentation/activities/widgets/friends_content_actv_detail_widget.dart';
 import 'package:town_square/presentation/activities/widgets/main_content_actv_detail_widget.dart';

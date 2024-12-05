@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:town_square/domain/activity_entity.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
 import 'package:town_square/infrastructure/constants/data.dart';
 
 final activitiesProvider =

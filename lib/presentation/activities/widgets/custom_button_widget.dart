@@ -41,17 +41,15 @@ class CustomButtonWidgetState extends State<CustomButtonWidget> {
               borderRadius: BorderRadius.circular(4),
             ),
             minimumSize: const Size(0, 22),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           ),
           child: Align(
             alignment: Alignment.center,
             child: Text(
               widget.title,
               style: textTheme.bodySmall?.copyWith(
-                color: _isHovered ? Colors.black : Colors.white,
-              ),
+                  color: _isHovered ? Colors.black : Colors.white,
+                  fontSize: 12),
             ),
           ),
         ),

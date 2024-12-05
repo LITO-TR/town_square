@@ -8,6 +8,7 @@ import 'package:town_square/presentation/activities/widgets/custom_card_goal_wid
 import 'package:town_square/presentation/activities/widgets/event_card_widget.dart';
 import 'package:town_square/presentation/activities/widgets/header_activities_widget.dart';
 import 'package:town_square/presentation/activities/widgets/second_event_card_widget.dart';
+import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 import 'package:town_square/presentation/shared/widgets/custom_text_form_field_widget.dart';
 import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +32,7 @@ class ActivitiesView extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: size.height * 0.05),
+                  SizedBox(height: size.height * 0.06),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: HeaderActivitiesWidget(),
@@ -72,7 +73,7 @@ class ActivitiesView extends ConsumerWidget {
             if (deviceType == DeviceType.desktop)
               Expanded(
                 flex: 1,
-                child: _buildDesktopSideColumn(size),
+                child: _buildDesktopSideColumn(size, ref),
               ),
           ],
         ),
@@ -81,7 +82,8 @@ class ActivitiesView extends ConsumerWidget {
   }
 }
 
-Widget _buildDesktopSideColumn(Size size) {
+Widget _buildDesktopSideColumn(Size size, ref) {
+  final themePv = ref.watch(themeProvider);
   return SizedBox(
     height: size.height,
     child: Padding(
@@ -91,15 +93,44 @@ Widget _buildDesktopSideColumn(Size size) {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(height: size.height * 0.04),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {
+                    ref.read(themeProvider.notifier).toggleTheme();
+                  },
+                  child: Image.asset(
+                    color: themePv ? Colors.white : Colors.black,
+                    'assets/images/icons/bell.png',
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/profile.png'),
+                  radius: 15,
+                  backgroundColor: Colors.yellow,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: size.height * 0.025),
           const CustomCardGoalDesktopWidget(),
           SizedBox(height: size.height * 0.03),
           SizedBox(
-            height: size.height * 0.3,
+            height: size.height * 0.21,
             child: const EventCardWidget(),
           ),
           SizedBox(height: size.height * 0.03),
           SizedBox(
-              height: size.height * 0.37, child: const SecondEventCardWidget()),
+              height: size.height * 0.3, child: const SecondEventCardWidget()),
         ],
       ),
     ),

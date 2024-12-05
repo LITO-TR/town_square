@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:town_square/config/helper/get_service_widget.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
-import 'package:town_square/domain/activity_entity.dart';
+import 'package:town_square/domain/entities/activity_entity.dart';
+import 'package:town_square/presentation/activities/providers/selection_provider.dart';
 import 'package:town_square/presentation/activities/widgets/custom_button_join_widget.dart';
+import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
 import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
 class ActivityCardWidget extends ConsumerWidget {
@@ -12,11 +14,17 @@ class ActivityCardWidget extends ConsumerWidget {
 
   const ActivityCardWidget({super.key, required this.activity});
 
+  void _openDrawer(BuildContext context, ref) {
+    ref.read(selectedActivityProvider.notifier).state = activity;
+    Scaffold.of(context).openEndDrawer();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.sizeOf(context);
     final themePv = ref.watch(themeProvider);
+    final deviceType = ref.watch(deviceTypeProvider);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
@@ -143,10 +151,14 @@ class ActivityCardWidget extends ConsumerWidget {
                         disabledForegroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        context.push(
-                          '/activities/details',
-                          extra: {'activity': activity},
-                        );
+                        if (deviceType == DeviceType.mobile) {
+                          context.push(
+                            '/home/activities/details',
+                            extra: {'activity': activity},
+                          );
+                        } else {
+                          _openDrawer(context, ref);
+                        }
                       },
                       child: const Padding(
                         padding:
@@ -158,10 +170,14 @@ class ActivityCardWidget extends ConsumerWidget {
                     CustomButtonJoinWidget(
                       isDark: themePv,
                       onPressed: () {
-                        context.push(
-                          '/activities/details',
-                          extra: {'activity': activity},
-                        );
+                        if (deviceType == DeviceType.mobile) {
+                          context.push(
+                            '/home/activities/details',
+                            extra: {'activity': activity},
+                          );
+                        } else {
+                          _openDrawer(context, ref);
+                        }
                       },
                     ),
                 ],
