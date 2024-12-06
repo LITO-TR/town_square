@@ -37,36 +37,37 @@ class HeaderActivitiesWidget extends ConsumerWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                  Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          //ref.read(themeProvider.notifier).toggleTheme();
-                          context.push('/activities/notifications');
-                        },
-                        child: Image.asset(
-                          color: themePv ? Colors.white : Colors.black,
-                          'assets/images/icons/bell.png',
-                          width: 24,
-                          height: 24,
+                  if (deviceType == DeviceType.mobile)
+                    Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            //ref.read(themeProvider.notifier).toggleTheme();
+                            context.push('/activities/notifications');
+                          },
+                          child: Image.asset(
+                            color: themePv ? Colors.white : Colors.black,
+                            'assets/images/icons/bell.png',
+                            width: 24,
+                            height: 24,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          context.push('/activities/profile');
-                        },
-                        child: const CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/images/profile.png'),
-                          radius: 14,
-                          backgroundColor: Colors.yellow,
+                        const SizedBox(
+                          width: 10,
                         ),
-                      ),
-                    ],
-                  ),
+                        InkWell(
+                          onTap: () {
+                            context.push('/activities/profile');
+                          },
+                          child: const CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/images/profile.png'),
+                            radius: 14,
+                            backgroundColor: Colors.yellow,
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             )

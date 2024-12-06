@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
 
-class CommentItemWidget extends StatelessWidget {
+class CommentItemWidget extends ConsumerWidget {
   final String name;
   final String comment;
   final String urlImage;
@@ -13,9 +15,10 @@ class CommentItemWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.sizeOf(context);
+    final deviceType = ref.watch(deviceTypeProvider);
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: Row(
@@ -45,7 +48,9 @@ class CommentItemWidget extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               SizedBox(
-                width: size.width * 0.73,
+                width: deviceType == DeviceType.mobile
+                    ? size.width * 0.73
+                    : size.width * 0.4,
                 child: Text(
                   comment,
                   style: textTheme.bodyMedium

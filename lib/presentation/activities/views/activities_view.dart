@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 import 'package:town_square/presentation/activities/widgets/activities_list_widget.dart';
 
@@ -82,7 +83,7 @@ class ActivitiesView extends ConsumerWidget {
   }
 }
 
-Widget _buildDesktopSideColumn(Size size, ref, context) {
+Widget _buildDesktopSideColumn(Size size, WidgetRef ref, BuildContext context) {
   final themePv = ref.watch(themeProvider);
   return SizedBox(
     height: size.height,
@@ -102,7 +103,7 @@ Widget _buildDesktopSideColumn(Size size, ref, context) {
                 InkWell(
                   onTap: () {
                     //ref.read(themeProvider.notifier).toggleTheme();
-                    context.push('/home/activities/notifications');
+                    context.push('/activities/notifications');
                   },
                   child: Image.asset(
                     color: themePv ? Colors.white : Colors.black,
@@ -114,10 +115,15 @@ Widget _buildDesktopSideColumn(Size size, ref, context) {
                 const SizedBox(
                   width: 10,
                 ),
-                const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/profile.png'),
-                  radius: 15,
-                  backgroundColor: Colors.yellow,
+                InkWell(
+                  onTap: () {
+                    context.go('/activities/profile');
+                  },
+                  child: const CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/profile.png'),
+                    radius: 15,
+                    backgroundColor: Colors.yellow,
+                  ),
                 ),
               ],
             ),

@@ -89,7 +89,7 @@ class NotificationCardWidget extends StatelessWidget {
                     notification.typeNotification ==
                         NotificationType.friendRequest)
                   SizedBox(
-                    width: size.width * 0.67,
+                    width: size.width * 0.6,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
