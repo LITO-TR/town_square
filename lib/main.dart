@@ -8,6 +8,7 @@ import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -18,7 +19,10 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themePv = ref.watch(themeProvider);
     final deviceTypePv = ref.watch(deviceTypeProvider);
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final width = MediaQuery.of(context).size.width;
+      ref.read(deviceTypeProvider.notifier).updateDeviceType(width);
+    });
     final appRouter = ref.watch(goRouterProvider);
 
     return MaterialApp.router(

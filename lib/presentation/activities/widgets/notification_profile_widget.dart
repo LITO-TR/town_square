@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
 import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
 class NotificationProfileWidget extends ConsumerWidget {
@@ -9,14 +10,16 @@ class NotificationProfileWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themePv = ref.watch(themeProvider);
+    final deviceType = ref.watch(deviceTypeProvider);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         InkWell(
           onTap: () {
-            //ref.read(themeProvider.notifier).toggleTheme();
-            context.go('/activities/notifications');
+            deviceType == DeviceType.mobile
+                ? context.go('/activities/notifications')
+                : context.go('/discovery/notifications');
           },
           child: Image.asset(
             color: themePv ? Colors.white : Colors.black,
@@ -30,7 +33,9 @@ class NotificationProfileWidget extends ConsumerWidget {
         ),
         InkWell(
           onTap: () {
-            context.go('/activities/profile');
+            deviceType == DeviceType.mobile
+                ? context.go('/activities/profile')
+                : context.go('/discovery/profile');
           },
           child: const CircleAvatar(
             backgroundImage: AssetImage('assets/images/profile.png'),

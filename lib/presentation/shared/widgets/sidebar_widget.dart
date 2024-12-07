@@ -1,201 +1,139 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:town_square/config/helper/top_indicator.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
+import 'package:town_square/presentation/shared/screens/home_screen.dart';
 
 class SidebarWidget extends ConsumerWidget {
-  final bool themePv;
-  final TabController controller;
+  final List<HomeItem> items;
+  final int currentIndex;
+  final Function(WidgetRef, int) onDestinationSelected;
 
   const SidebarWidget({
     super.key,
-    required this.controller,
-    required this.themePv,
+    required this.items,
+    required this.currentIndex,
+    required this.onDestinationSelected,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final size = MediaQuery.sizeOf(context);
-
-    return Padding(
-      padding: const EdgeInsets.only(right: 30.0),
-      child: Container(
-        width: 272,
-        height: size.height,
+    return Drawer(
+      width: 272,
+      child: Material(
         color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            Image.asset(
-              'assets/images/TWNSQR.png',
-              width: 156,
-              height: 43,
-              fit: BoxFit.contain,
-            ),
-            RotatedBox(
-              quarterTurns: 1,
-              child: TabBar(
-                physics: const NeverScrollableScrollPhysics(),
-                dividerColor: Colors.transparent,
-                indicator: TopIndicatorDesktop(),
-                splashFactory: NoSplash.splashFactory,
-                enableFeedback: false,
-                controller: controller,
-                isScrollable: true,
-                tabs: [
-                  _buildTabWithLabel(
-                    isSelected: controller.index == 0,
-                    assetPath: 'assets/images/icons/calendar.png',
-                    label: 'Discovery',
-                    themePv: themePv,
-                    size: size,
-                    onTap: () {
-                      context.go('/activities');
-                    },
-                  ),
-                  _buildTabWithLabel(
-                    isSelected: controller.index == 1,
-                    assetPath: 'assets/images/icons/users.png',
-                    label: 'People',
-                    themePv: themePv,
-                    size: size,
-                    onTap: () {
-                      context.go('/people');
-                    },
-                  ),
-                  _buildTabWithLabel(
-                    isSelected: controller.index == 2,
-                    assetPath: 'assets/images/icons/calendar.png',
-                    label: 'Job Board',
-                    themePv: themePv,
-                    size: size,
-                    onTap: () {
-                      context.go('/jobs');
-                    },
-                  ),
-                  _buildTabWithLabel(
-                    isSelected: controller.index == 3,
-                    assetPath: 'assets/images/icons/marketplace.png',
-                    label: 'Local\nMarketplace',
-                    themePv: themePv,
-                    size: size,
-                    onTap: () {
-                      context.go('/marketplace');
-                    },
-                  ),
-                  Tab(
-                    height: size.width * 1,
-                    child: RotatedBox(
-                      quarterTurns: -1,
-                      child: GestureDetector(
-                        onTap: () {
-                          context.go('/activities/create-event');
-                        },
-                        child: Container(
-                          width: 210,
-                          height: 53,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 25, left: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                'assets/images/TWNSQR.png',
+                width: 156,
+                height: 43,
+              ),
+              const SizedBox(height: 30),
+              ...items.asMap().entries.map((entry) {
+                final index = entry.key;
+                final item = entry.value;
+
+                return GestureDetector(
+                  onTap: () => onDestinationSelected(ref, index),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 209,
                           decoration: BoxDecoration(
-                            color: CustomColors.primary[300],
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: index == 4
+                                ? BorderRadius.circular(25)
+                                : BorderRadius.circular(10),
+                            color: index == 4
+                                ? CustomColors.primary[300]
+                                : index == currentIndex
+                                    ? CustomColors.neutral[900]
+                                    : Colors.transparent,
                           ),
+                          padding: const EdgeInsets.all(10),
                           child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             children: [
-                              const SizedBox(width: 10),
                               Image.asset(
-                                'assets/images/icons/plus.png',
+                                item.iconPath,
                                 width: 24,
                                 height: 24,
-                                color: Colors.black,
+                                color: index == 4
+                                    ? Colors.black
+                                    : index == currentIndex
+                                        ? CustomColors.primary[400]
+                                        : Colors.white,
                               ),
-                              const SizedBox(width: 30),
-                              const Text(
-                                'Request to\nCreate',
+                              const SizedBox(width: 10),
+                              Text(
+                                item.name,
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
+                                  color: index == 4
+                                      ? Colors.black
+                                      : index == currentIndex
+                                          ? CustomColors.primary[400]
+                                          : Colors.white,
+                                  fontSize: 16,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ),
+                        if (index == currentIndex)
+                          const Positioned(
+                            right: -15,
+                            top: 20,
+                            child: CustomRightIndicator(),
+                          ),
+                      ],
                     ),
                   ),
-                  _buildTabWithLabel(
-                    isSelected: controller.index == 5,
-                    assetPath: 'assets/images/icons/settings.png',
-                    label: 'Settings',
-                    themePv: themePv,
-                    size: size,
-                    onTap: () {
-                      context.go('/settings');
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTabWithLabel({
-    required void Function() onTap,
-    required bool isSelected,
-    required String assetPath,
-    required String label,
-    required bool themePv,
-    required size,
-  }) {
-    final backgroundColor =
-        isSelected ? CustomColors.neutral[900] : Colors.black;
-
-    final textColor = isSelected ? CustomColors.primary[400] : Colors.white;
-
-    final iconColor = isSelected ? CustomColors.primary[400] : Colors.white;
-
-    return Tab(
-      height: size.width,
-      child: RotatedBox(
-        quarterTurns: -1,
-        child: GestureDetector(
-          onTap: onTap,
-          child: Container(
-            width: 210,
-            height: isSelected ? 53 : null,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(width: 10),
-                Image.asset(
-                  assetPath,
-                  width: 24,
-                  height: 24,
-                  color: iconColor,
-                ),
-                const SizedBox(width: 30),
-                Text(
-                  label,
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
+                );
+              }).toList(),
+            ],
           ),
         ),
       ),
     );
   }
+}
+
+class CustomRightIndicator extends StatelessWidget {
+  const CustomRightIndicator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      size: const Size(12, 12),
+      painter: _RightIndicatorPainter(),
+    );
+  }
+}
+
+class _RightIndicatorPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = CustomColors.primary[400]!
+      ..style = PaintingStyle.fill;
+
+    const double radius = 6.0;
+    final Offset center = Offset(size.width / 2, size.height / 2);
+
+    // Dibuja un medio círculo
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      3.14 / 2,
+      3.14,
+      false,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
