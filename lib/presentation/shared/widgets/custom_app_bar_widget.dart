@@ -9,7 +9,6 @@ class CustomAppBarWidget extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     return AppBar(
-      backgroundColor: Colors.white,
       title: Text(title, style: textTheme.displaySmall),
       centerTitle: false,
       actions: [

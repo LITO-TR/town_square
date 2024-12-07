@@ -10,7 +10,6 @@ class UploadImageWidget extends StatelessWidget {
 
     return Stack(
       children: [
-        // Imagen de fondo con sombra
         Container(
           height: size.height * 0.4,
           width: double.infinity,
@@ -18,7 +17,7 @@ class UploadImageWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             image: const DecorationImage(
               image: AssetImage('assets/images/create_event.png'),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
             boxShadow: const [
               BoxShadow(
@@ -30,7 +29,6 @@ class UploadImageWidget extends StatelessWidget {
             ],
           ),
         ),
-
         Positioned(
           bottom: 20,
           right: 20,

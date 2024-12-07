@@ -4,10 +4,14 @@ import 'package:town_square/domain/entities/activity_entity.dart';
 
 class FriendsContentActvDetailWidget extends StatelessWidget {
   const FriendsContentActvDetailWidget(
-      {super.key, required this.size, required this.activity});
+      {super.key,
+      required this.size,
+      required this.activity,
+      required this.isDark});
 
   final Size size;
   final ActivityEntity activity;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class FriendsContentActvDetailWidget extends StatelessWidget {
       child: Container(
         height: 51,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark ? Colors.black : Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(

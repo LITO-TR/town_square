@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:town_square/config/helper/top_indicator.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 
@@ -50,6 +51,9 @@ class SidebarWidget extends ConsumerWidget {
                     label: 'Discovery',
                     themePv: themePv,
                     size: size,
+                    onTap: () {
+                      context.go('/activities');
+                    },
                   ),
                   _buildTabWithLabel(
                     isSelected: controller.index == 1,
@@ -57,6 +61,9 @@ class SidebarWidget extends ConsumerWidget {
                     label: 'People',
                     themePv: themePv,
                     size: size,
+                    onTap: () {
+                      context.go('/people');
+                    },
                   ),
                   _buildTabWithLabel(
                     isSelected: controller.index == 2,
@@ -64,6 +71,9 @@ class SidebarWidget extends ConsumerWidget {
                     label: 'Job Board',
                     themePv: themePv,
                     size: size,
+                    onTap: () {
+                      context.go('/jobs');
+                    },
                   ),
                   _buildTabWithLabel(
                     isSelected: controller.index == 3,
@@ -71,38 +81,46 @@ class SidebarWidget extends ConsumerWidget {
                     label: 'Local\nMarketplace',
                     themePv: themePv,
                     size: size,
+                    onTap: () {
+                      context.go('/marketplace');
+                    },
                   ),
                   Tab(
                     height: size.width * 1,
                     child: RotatedBox(
                       quarterTurns: -1,
-                      child: Container(
-                        width: 210,
-                        height: 53,
-                        decoration: BoxDecoration(
-                          color: CustomColors.primary[300],
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const SizedBox(width: 10),
-                            Image.asset(
-                              'assets/images/icons/plus.png',
-                              width: 24,
-                              height: 24,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(width: 30),
-                            const Text(
-                              'Request to\nCreate',
-                              style: TextStyle(
+                      child: GestureDetector(
+                        onTap: () {
+                          context.go('/activities/create-event');
+                        },
+                        child: Container(
+                          width: 210,
+                          height: 53,
+                          decoration: BoxDecoration(
+                            color: CustomColors.primary[300],
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              const SizedBox(width: 10),
+                              Image.asset(
+                                'assets/images/icons/plus.png',
+                                width: 24,
+                                height: 24,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 30),
+                              const Text(
+                                'Request to\nCreate',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -113,6 +131,9 @@ class SidebarWidget extends ConsumerWidget {
                     label: 'Settings',
                     themePv: themePv,
                     size: size,
+                    onTap: () {
+                      context.go('/settings');
+                    },
                   ),
                 ],
               ),
@@ -124,6 +145,7 @@ class SidebarWidget extends ConsumerWidget {
   }
 
   Widget _buildTabWithLabel({
+    required void Function() onTap,
     required bool isSelected,
     required String assetPath,
     required String label,
@@ -141,33 +163,36 @@ class SidebarWidget extends ConsumerWidget {
       height: size.width,
       child: RotatedBox(
         quarterTurns: -1,
-        child: Container(
-          width: 210,
-          height: isSelected ? 53 : null,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(width: 10),
-              Image.asset(
-                assetPath,
-                width: 24,
-                height: 24,
-                color: iconColor,
-              ),
-              const SizedBox(width: 30),
-              Text(
-                label,
-                style: TextStyle(
-                  color: textColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: 210,
+            height: isSelected ? 53 : null,
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(width: 10),
+                Image.asset(
+                  assetPath,
+                  width: 24,
+                  height: 24,
+                  color: iconColor,
                 ),
-              ),
-            ],
+                const SizedBox(width: 30),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

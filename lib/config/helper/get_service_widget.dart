@@ -19,7 +19,9 @@ Widget getServiceWidget(String service, TextTheme textTheme) {
     'childcare': CustomColors.childCareTagTitle,
   };
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+    padding: const EdgeInsets.symmetric(
+      horizontal: 4,
+    ),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(2),
       color: serviceColors[service] ?? CustomColors.neutral[200],
@@ -27,9 +29,9 @@ Widget getServiceWidget(String service, TextTheme textTheme) {
     child: Text(
       service,
       style: textTheme.bodySmall?.copyWith(
-          color: titleServiceColors[service],
-          fontWeight: FontWeight.w700,
-          fontSize: 10),
+        color: titleServiceColors[service],
+        fontWeight: FontWeight.w700,
+      ),
     ),
   );
 }

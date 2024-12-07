@@ -5,6 +5,7 @@ import 'package:town_square/config/theme/custom_colors.dart';
 import 'package:town_square/infrastructure/constants/data.dart';
 import 'package:town_square/presentation/activities/providers/activities_provider.dart';
 import 'package:town_square/presentation/activities/widgets/category_item_widget.dart';
+import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
 class CategoryListWidget extends ConsumerWidget {
   final bool hideFirstItem;
@@ -14,7 +15,7 @@ class CategoryListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activitiesState = ref.watch(activitiesProvider);
-
+    final themePv = ref.watch(themeProvider);
     return SizedBox(
       height: 30,
       child: ListView.separated(
@@ -27,7 +28,8 @@ class CategoryListWidget extends ConsumerWidget {
           if (!hideFirstItem && index == 0) {
             return GestureDetector(
               onTap: () {
-                ShowModalBottomSheetHelper().showFiltersBottomSheet(context);
+                ShowModalBottomSheetHelper()
+                    .showFiltersBottomSheet(context, themePv);
               },
               child: Container(
                 padding:

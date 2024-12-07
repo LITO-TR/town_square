@@ -76,7 +76,7 @@ final goRouterProvider = Provider(
 
             // Aquí puedes agregar más rutas según sea necesario
             GoRoute(
-              path: "map",
+              path: "/map",
               name: "Map",
               builder: (BuildContext context, GoRouterState state) =>
                   const Center(
@@ -84,19 +84,43 @@ final goRouterProvider = Provider(
               ),
             ),
             GoRoute(
-              path: "users",
-              name: "User",
+              path: "/people",
+              name: "People",
               builder: (BuildContext context, GoRouterState state) =>
                   const Center(
-                child: Text('Users'),
+                child: Text('People'),
               ),
             ),
             GoRoute(
-              path: "star",
+              path: "/star",
               name: "Star",
               builder: (BuildContext context, GoRouterState state) =>
                   const Center(
                 child: Text('Star'),
+              ),
+            ),
+            GoRoute(
+              path: "/jobs",
+              name: "Jobs",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Center(
+                child: Text('Jobs'),
+              ),
+            ),
+            GoRoute(
+              path: "/marketplace",
+              name: "Marketplace",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Center(
+                child: Text('Marketplace'),
+              ),
+            ),
+            GoRoute(
+              path: "/settings",
+              name: "Settings",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Center(
+                child: Text('Settings'),
               ),
             ),
           ],

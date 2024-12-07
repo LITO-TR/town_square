@@ -1,20 +1,23 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:town_square/domain/entities/activity_entity.dart';
 import 'package:town_square/infrastructure/constants/data.dart';
+import 'package:town_square/presentation/activities/providers/selection_provider.dart';
 
 final activitiesProvider =
     StateNotifierProvider<ActivitiesNotifier, ActivitiesState>((ref) {
-  return ActivitiesNotifier();
+  return ActivitiesNotifier(ref);
 });
 
 class ActivitiesNotifier extends StateNotifier<ActivitiesState> {
-  ActivitiesNotifier() : super(ActivitiesState());
-
+  ActivitiesNotifier(this.ref) : super(ActivitiesState());
+  final Ref ref;
   Future<void> getActivities() async {
     try {
       state = state.copyWith(isLoading: true);
       await Future.delayed(const Duration(seconds: 2));
       final List<ActivityEntity> activitiesList = activities;
+      ref.read(selectedActivityProvider.notifier).state = activities[0];
+
       state = state.copyWith(
         allActivities: activitiesList,
         activities: activitiesList,

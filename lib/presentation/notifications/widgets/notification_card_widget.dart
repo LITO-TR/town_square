@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
 import 'package:town_square/domain/entities/notification_entity.dart';
+import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
-class NotificationCardWidget extends StatelessWidget {
+class NotificationCardWidget extends ConsumerWidget {
   final NotificationEntity notification;
   final TextTheme textTheme;
   final Size size;
@@ -14,7 +16,8 @@ class NotificationCardWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themePv = ref.watch(themeProvider);
     String additionalText;
     switch (notification.typeNotification) {
       case NotificationType.invitation:
@@ -29,9 +32,9 @@ class NotificationCardWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0),
+      padding: const EdgeInsets.only(bottom: 20.0, left: 20, right: 20),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+        padding: const EdgeInsets.only(left: 14, top: 16, bottom: 16),
         decoration: BoxDecoration(
           boxShadow: const [
             BoxShadow(
@@ -40,7 +43,7 @@ class NotificationCardWidget extends StatelessWidget {
               blurRadius: 8,
             ),
           ],
-          color: Colors.white,
+          color: themePv ? Colors.black : Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -53,21 +56,24 @@ class NotificationCardWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: notification.nameUser,
-                        style: textTheme.bodyLarge?.copyWith(fontSize: 16),
-                      ),
-                      TextSpan(
-                        text: additionalText,
-                        style: textTheme.bodyLarge?.copyWith(
-                          fontSize: 16,
-                          color: CustomColors.neutral[600],
+                SizedBox(
+                  width: size.width * 0.68,
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: notification.nameUser,
+                          style: textTheme.bodyLarge?.copyWith(fontSize: 16),
                         ),
-                      ),
-                    ],
+                        TextSpan(
+                          text: additionalText,
+                          style: textTheme.bodyLarge?.copyWith(
+                            fontSize: 16,
+                            color: CustomColors.neutral[600],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 if (notification.typeNotification ==
@@ -89,7 +95,6 @@ class NotificationCardWidget extends StatelessWidget {
                     notification.typeNotification ==
                         NotificationType.friendRequest)
                   SizedBox(
-                    width: size.width * 0.6,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -109,6 +114,7 @@ class NotificationCardWidget extends StatelessWidget {
                             ),
                           ),
                         ),
+                        const SizedBox(width: 20),
                         Container(
                           width: size.width * 0.3,
                           padding: const EdgeInsets.symmetric(

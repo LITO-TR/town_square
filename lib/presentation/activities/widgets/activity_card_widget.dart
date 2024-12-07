@@ -15,7 +15,7 @@ class ActivityCardWidget extends ConsumerWidget {
   const ActivityCardWidget({super.key, required this.activity});
 
   void _openDrawer(BuildContext context, ref) {
-    ref.read(selectedActivityProvider.notifier).state = activity;
+    ref.read(selectedActivityProvider.notifier).update((state) => activity);
     Scaffold.of(context).openEndDrawer();
   }
 
@@ -73,13 +73,13 @@ class ActivityCardWidget extends ConsumerWidget {
                   ),
                   Text(activity.title,
                       style: textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w700, fontSize: 16)),
+                          fontWeight: FontWeight.w700, fontSize: 18)),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Icon(
-                        size: 12,
+                        size: 16,
                         Icons.location_on_outlined,
                         color: CustomColors.neutral,
                       ),
@@ -98,7 +98,8 @@ class ActivityCardWidget extends ConsumerWidget {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 2),
+                          horizontal: 4,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(2),
                           color: themePv

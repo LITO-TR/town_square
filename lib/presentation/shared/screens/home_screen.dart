@@ -76,15 +76,7 @@ class HomeScreenState extends ConsumerState<HomeScreen>
               index: deviceType == DeviceType.mobile
                   ? _tabControllerMobile.index
                   : _tabControllerDesktop.index,
-              children: [
-                widget.child
-                // _buildNavigatorWidget(0), // Activities
-                // _buildNavigatorWidget(1), // Empty Placeholder
-                // _buildNavigatorWidget(2), // Empty Placeholder
-                // _buildNavigatorWidget(3), // Empty Placeholder
-                // _buildNavigatorWidget(4), // Empty Placeholder
-                // _buildNavigatorWidget(5), // Create Event (Desktop only)
-              ],
+              children: [widget.child],
             ),
           ),
         ],
@@ -101,47 +93,61 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                   indicator: TopIndicator(),
                   tabs: [
                     Tab(
-                      icon: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: _tabControllerMobile.index == 0
-                                ? CustomColors.neutral[200]!
-                                : Colors.white),
-                        child: Tab(
-                          icon: Image.asset(
-                            'assets/images/icons/calendar.png',
-                            width: 24,
-                            height: 24,
-                            color: _tabControllerMobile.index == 0
-                                ? CustomColors.primary[400]
-                                : (isDark ? Colors.white : Colors.black),
+                      icon: GestureDetector(
+                        onTap: () {
+                          context.push("/activities");
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: _tabControllerMobile.index == 0
+                                  ? (isDark
+                                      ? CustomColors.neutral[900]!
+                                      : CustomColors.neutral[200]!)
+                                  : (isDark ? Colors.black : Colors.white)),
+                          child: Tab(
+                            icon: Image.asset(
+                              'assets/images/icons/calendar.png',
+                              width: 24,
+                              height: 24,
+                              color: _tabControllerMobile.index == 0
+                                  ? (CustomColors.primary[400])
+                                  : (isDark ? Colors.white : Colors.black),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Tab(
-                      icon: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: _tabControllerMobile.index == 1
-                                ? CustomColors.neutral[300]!
-                                : Colors.white),
-                        child: Image.asset(
-                          'assets/images/icons/map.png',
-                          width: 24,
-                          height: 24,
-                          color: _tabControllerMobile.index == 1
-                              ? CustomColors.primary[400]
-                              : (isDark ? Colors.white : Colors.black),
                         ),
                       ),
                     ),
                     Tab(
                       icon: GestureDetector(
                         onTap: () {
-                          context.push('/activities/create-event');
+                          context.push("/map");
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: _tabControllerMobile.index == 1
+                                  ? (isDark
+                                      ? CustomColors.neutral[900]!
+                                      : CustomColors.neutral[200]!)
+                                  : (isDark ? Colors.black : Colors.white)),
+                          child: Image.asset(
+                            'assets/images/icons/map.png',
+                            width: 24,
+                            height: 24,
+                            color: _tabControllerMobile.index == 1
+                                ? (CustomColors.primary[400])
+                                : (isDark ? Colors.white : Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      icon: GestureDetector(
+                        onTap: () {
+                          context.go('/activities/create-event');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -161,38 +167,52 @@ class HomeScreenState extends ConsumerState<HomeScreen>
                       ),
                     ),
                     Tab(
-                      icon: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                      icon: GestureDetector(
+                        onTap: () {
+                          context.push("/People");
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: _tabControllerMobile.index == 3
+                                  ? (isDark
+                                      ? CustomColors.neutral[900]!
+                                      : CustomColors.neutral[200]!)
+                                  : (isDark ? Colors.black : Colors.white)),
+                          child: Image.asset(
+                            'assets/images/icons/users.png',
+                            width: 24,
+                            height: 24,
                             color: _tabControllerMobile.index == 3
-                                ? CustomColors.neutral[300]!
-                                : Colors.white),
-                        child: Image.asset(
-                          'assets/images/icons/users.png',
-                          width: 24,
-                          height: 24,
-                          color: _tabControllerMobile.index == 3
-                              ? CustomColors.primary
-                              : (isDark ? Colors.white : Colors.black),
+                                ? (CustomColors.primary[400])
+                                : (isDark ? Colors.white : Colors.black),
+                          ),
                         ),
                       ),
                     ),
                     Tab(
-                      icon: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                      icon: GestureDetector(
+                        onTap: () {
+                          context.push("/star");
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: _tabControllerMobile.index == 4
+                                  ? (isDark
+                                      ? CustomColors.neutral[900]!
+                                      : CustomColors.neutral[200]!)
+                                  : (isDark ? Colors.black : Colors.white)),
+                          child: Image.asset(
+                            'assets/images/icons/star.png',
+                            width: 24,
+                            height: 24,
                             color: _tabControllerMobile.index == 4
-                                ? CustomColors.neutral[300]!
-                                : Colors.white),
-                        child: Image.asset(
-                          'assets/images/icons/star.png',
-                          width: 24,
-                          height: 24,
-                          color: _tabControllerMobile.index == 4
-                              ? CustomColors.primary
-                              : (isDark ? Colors.white : Colors.black),
+                                ? (CustomColors.primary[400])
+                                : (isDark ? Colors.white : Colors.black),
+                          ),
                         ),
                       ),
                     ),

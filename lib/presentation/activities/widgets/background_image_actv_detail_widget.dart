@@ -21,7 +21,7 @@ class BackgroundImageActvDetailWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 50,
+          top: 30,
           left: 20,
           right: 20,
           child: Row(

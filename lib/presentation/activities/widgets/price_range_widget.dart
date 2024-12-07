@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:town_square/config/theme/custom_colors.dart';
+import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
-class PriceRangeWidget extends StatefulWidget {
+class PriceRangeWidget extends ConsumerStatefulWidget {
   const PriceRangeWidget({super.key});
 
   @override
   PriceRangeWidgetState createState() => PriceRangeWidgetState();
 }
 
-class PriceRangeWidgetState extends State<PriceRangeWidget> {
+class PriceRangeWidgetState extends ConsumerState<PriceRangeWidget> {
   RangeValues _currentRangeValues = const RangeValues(0, 20);
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.sizeOf(context);
+    final themePv = ref.watch(themeProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,8 +46,10 @@ class PriceRangeWidgetState extends State<PriceRangeWidget> {
           child: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: RangeSlider(
-              activeColor: Colors.black,
-              inactiveColor: CustomColors.neutral[400],
+              activeColor: themePv ? Colors.white : Colors.black,
+              inactiveColor: themePv
+                  ? CustomColors.neutral[900]
+                  : CustomColors.neutral[400],
               values: _currentRangeValues,
               min: 0,
               max: 20,

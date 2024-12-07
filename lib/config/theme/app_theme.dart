@@ -10,6 +10,7 @@ class AppTheme {
         brightness: Brightness.light,
         fontFamily: 'SFProDisplay',
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColorLigthMode,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         textTheme: textTheme.copyWith(
           displayLarge: textTheme.displayLarge!.copyWith(color: Colors.black),
           displayMedium: textTheme.displayMedium!.copyWith(color: Colors.black),
@@ -26,6 +27,7 @@ class AppTheme {
         brightness: Brightness.dark,
         fontFamily: 'SFProDisplay',
         scaffoldBackgroundColor: CustomColors.scaffoldBackgroundColorDarkMode,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
         textTheme: textTheme.copyWith(
           displayLarge: textTheme.displayLarge!.copyWith(color: Colors.white),
           displayMedium: textTheme.displayMedium!.copyWith(color: Colors.white),

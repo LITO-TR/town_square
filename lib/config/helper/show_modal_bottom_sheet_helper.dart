@@ -11,14 +11,17 @@ import 'package:town_square/presentation/activities/widgets/price_range_widget.d
 import 'package:town_square/presentation/activities/widgets/time_date_list_widget.dart';
 
 class ShowModalBottomSheetHelper {
-  void showFiltersBottomSheet(BuildContext context) {
+  void showFiltersBottomSheet(
+    BuildContext context,
+    bool isDark,
+  ) {
     final ValueNotifier<bool> isExpanded = ValueNotifier(false);
 
     showModalBottomSheet(
       useRootNavigator: true,
       isScrollControlled: true,
       context: context,
-      backgroundColor: CustomColors.neutral[100],
+      backgroundColor: isDark ? Colors.black : CustomColors.neutral[100],
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(36)),
       ),

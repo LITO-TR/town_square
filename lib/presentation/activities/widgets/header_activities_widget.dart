@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:town_square/config/theme/custom_colors.dart';
+import 'package:town_square/presentation/activities/widgets/notification_profile_widget.dart';
 
 import 'package:town_square/presentation/shared/providers/device_type_provider.dart';
-import 'package:town_square/presentation/shared/providers/theme_provider.dart';
 
 class HeaderActivitiesWidget extends ConsumerWidget {
   const HeaderActivitiesWidget({super.key});
@@ -14,7 +14,7 @@ class HeaderActivitiesWidget extends ConsumerWidget {
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.sizeOf(context);
     final deviceType = ref.watch(deviceTypeProvider);
-    final themePv = ref.watch(themeProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +24,7 @@ class HeaderActivitiesWidget extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: size.width * 0.9,
+              width: size.width * 0.89,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,36 +38,7 @@ class HeaderActivitiesWidget extends ConsumerWidget {
                       ),
                     ),
                   if (deviceType == DeviceType.mobile)
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            //ref.read(themeProvider.notifier).toggleTheme();
-                            context.push('/activities/notifications');
-                          },
-                          child: Image.asset(
-                            color: themePv ? Colors.white : Colors.black,
-                            'assets/images/icons/bell.png',
-                            width: 24,
-                            height: 24,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            context.push('/activities/profile');
-                          },
-                          child: const CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/profile.png'),
-                            radius: 14,
-                            backgroundColor: Colors.yellow,
-                          ),
-                        ),
-                      ],
-                    ),
+                    const NotificationProfileWidget()
                 ],
               ),
             )
