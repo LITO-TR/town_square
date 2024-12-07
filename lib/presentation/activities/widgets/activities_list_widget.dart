@@ -24,6 +24,9 @@ class ActivitiesListWidgetState extends ConsumerState<ActivitiesListWidget>
       duration: const Duration(milliseconds: 500),
       vsync: this,
     );
+    Future.microtask(() {
+      ref.read(activitiesProvider.notifier).getActivities();
+    });
   }
 
   @override
