@@ -100,9 +100,9 @@ StatefulShellBranch _buildShellBranch(int index) {
       GoRoute(
         path: paths[index],
         pageBuilder: (context, state) {
-          return NoTransitionPage(
-            key: state.pageKey,
+          return buildCustomTransitionPage(
             child: widgets[index],
+            context: context,
           );
         },
         routes: _buildSubRoutes(index),
@@ -176,9 +176,9 @@ StatefulShellBranch _buildDesktopShellBranch(int index) {
       GoRoute(
         path: paths[index],
         pageBuilder: (context, state) {
-          return NoTransitionPage(
-            key: state.pageKey,
-            child: widgets[index],
+          return buildCustomTransitionPage(
+            //key: state.pageKey,
+            child: widgets[index], context: context,
           );
         },
         routes: _buildDesktopSubRoutes(index),

@@ -38,13 +38,22 @@ class CustomBottomNavigationbar extends ConsumerWidget {
       unselectedLabelStyle: const TextStyle(fontSize: 0),
       onTap: (value) => onItemTapped(context, value, ref),
       elevation: 0,
-      items: items.map((item) {
+      items: items.asMap().entries.map((entry) {
+        final index = entry.key;
+        final item = entry.value;
         return BottomNavigationBarItem(
           icon: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: themePv ? Colors.black : Colors.white),
+              borderRadius: index == 2
+                  ? BorderRadius.circular(40)
+                  : BorderRadius.circular(10),
+              color: index == 2
+                  ? CustomColors.primary[400]
+                  : themePv
+                      ? Colors.black
+                      : Colors.white,
+            ),
             child: Image.asset(
               item.iconPath,
               width: 24,
@@ -58,15 +67,20 @@ class CustomBottomNavigationbar extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: themePv
-                        ? CustomColors.neutral[900]
-                        : CustomColors.neutral[300]),
+                  borderRadius: index == 2
+                      ? BorderRadius.circular(40)
+                      : BorderRadius.circular(10),
+                  color: index == 2
+                      ? CustomColors.primary[400]
+                      : themePv
+                          ? CustomColors.neutral[900]
+                          : CustomColors.neutral[300],
+                ),
                 child: Image.asset(
                   item.iconPath,
                   width: 24,
                   height: 24,
-                  color: CustomColors.primary[400],
+                  color: index == 2 ? Colors.white : CustomColors.primary[400],
                 ),
               ),
             ],
