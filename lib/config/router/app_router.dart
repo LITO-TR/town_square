@@ -210,19 +210,7 @@ List<GoRoute> _buildDesktopSubRoutes(int index) {
           },
         ),
       ];
-    case 1:
-      return [
-        GoRoute(
-          path: "details",
-          pageBuilder: (context, state) {
-            final activity = state.extra as ActivityEntity;
-            return buildCustomTransitionPage(
-              context: context,
-              child: ActivityDetailScreen(activity: activity),
-            );
-          },
-        ),
-      ];
+
     default:
       return [];
   }
